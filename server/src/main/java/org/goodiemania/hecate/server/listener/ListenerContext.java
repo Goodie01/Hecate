@@ -2,7 +2,7 @@ package org.goodiemania.hecate.server.listener;
 
 import io.javalin.Javalin;
 import io.javalin.http.HandlerType;
-import org.goodiemania.hecate.server.listener.configuration.Configuration;
+import org.goodiemania.hecate.server.configuration.Configuration;
 
 public class ListenerContext {
     private MetaContext metaContext;
@@ -14,7 +14,12 @@ public class ListenerContext {
         this.configuration = configuration;
 
         listener = metaContext.get(configuration.getPort());
-        listener.addHandler(HandlerType.valueOf(configuration.getHttpMethod()), configuration.getContext(), ctx -> ctx.result("Hello there"));
+        listener.addHandler(
+                HandlerType.valueOf(configuration.getHttpMethod()),
+                configuration.getContext(),
+                ctx -> {
+                    ctx.result("Hello there");
+                });
     }
 
     public void close() {

@@ -1,6 +1,6 @@
 package org.goodiemania.hecate.server;
 
-import org.goodiemania.hecate.server.listener.configuration.Configuration;
+import org.goodiemania.hecate.server.configuration.Configuration;
 import org.goodiemania.hecate.server.listener.ListenerContext;
 import org.goodiemania.hecate.server.listener.MetaContext;
 

@@ -1,4 +1,6 @@
-package org.goodiemania.hecate.server.listener.configuration;
+package org.goodiemania.hecate.server.configuration;
+
+import java.util.List;
 
 public class Configuration {
     private String name;
@@ -6,6 +8,7 @@ public class Configuration {
     private int port;
     private String httpMethod;
     private String context;
+    private List<Rule> rules;
 
     public String getName() {
         return name;
@@ -37,5 +40,13 @@ public class Configuration {
 
     public void setContext(final String context) {
         this.context = context;
+    }
+
+    public List<Rule> getRules() {
+        return rules;
+    }
+
+    public void setRules(final List<Rule> rules) {
+        this.rules = rules;
     }
 }
