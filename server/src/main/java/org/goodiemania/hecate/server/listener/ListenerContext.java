@@ -2,23 +2,23 @@ package org.goodiemania.hecate.server.listener;
 
 import io.javalin.Javalin;
 import io.javalin.http.HandlerType;
-import org.goodiemania.hecate.server.configuration.Configuration;
+import org.goodiemania.hecate.server.configuration.ListenerConfiguration;
+import org.goodiemania.hecate.server.configuration.Rule;
 
 public class ListenerContext {
-    private MetaContext metaContext;
     private Javalin listener;
-    private Configuration configuration;
 
-    public ListenerContext(final MetaContext metaContext, final Configuration configuration) {
-        this.metaContext = metaContext;
-        this.configuration = configuration;
-
-        listener = metaContext.get(configuration.getPort());
+    public ListenerContext(final MetaContext metaContext, final ListenerConfiguration listenerConfiguration) {
+        listener = metaContext.get(listenerConfiguration.getPort());
         listener.addHandler(
-                HandlerType.valueOf(configuration.getHttpMethod()),
-                configuration.getContext(),
+                HandlerType.valueOf(listenerConfiguration.getHttpMethod()),
+                listenerConfiguration.getContext(),
                 ctx -> {
-                    ctx.result("Hello there");
+                    for (Rule rule : listenerConfiguration.getRules()) {
+                        if (!rule.process(ctx)) {
+                            break;
+                        }
+                    }
                 });
     }
 

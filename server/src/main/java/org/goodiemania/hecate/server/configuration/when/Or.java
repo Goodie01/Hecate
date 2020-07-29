@@ -1,0 +1,29 @@
+package org.goodiemania.hecate.server.configuration.when;
+
+import io.javalin.http.Context;
+
+public class Or extends When {
+    private When when1;
+    private When when2;
+
+    public When getWhen1() {
+        return when1;
+    }
+
+    public void setWhen1(final When when1) {
+        this.when1 = when1;
+    }
+
+    public When getWhen2() {
+        return when2;
+    }
+
+    public void setWhen2(final When when2) {
+        this.when2 = when2;
+    }
+
+    @Override
+    public boolean check(final Context context) {
+        return when1.check(context) || when2.check(context);
+    }
+}

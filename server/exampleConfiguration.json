@@ -1,0 +1,44 @@
+{
+  "adminPort": 1234,
+  "listeners": [
+    {
+      "name": "bobbyDropTables",
+      "port": 8443,
+      "httpMethod": "GET",
+      "context": "/*",
+      "rules": [
+        {
+          "when": {
+            "type": "PathContains",
+            "searchString": "HelloThere"
+          },
+          "then": {
+            "type": "StaticReturn",
+            "staticResponse": "General Kenobi",
+            "responseCode": 200
+          },
+          "order": 0
+        },
+        {
+          "when": {
+            "type": "And",
+            "when1": {
+              "type": "BodyContains",
+              "searchString": "123456"
+            },
+            "when2": {
+              "type": "PathContains",
+              "searchString": "123456"
+            }
+          },
+          "then": {
+            "type": "StaticReturn",
+            "staticResponse": "The secret is here",
+            "responseCode": 201
+          },
+          "order": 1
+        }
+      ]
+    }
+  ]
+}
