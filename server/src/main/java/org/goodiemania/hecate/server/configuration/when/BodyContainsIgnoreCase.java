@@ -1,7 +1,7 @@
 package org.goodiemania.hecate.server.configuration.when;
 
-import io.javalin.http.Context;
 import org.apache.commons.lang3.StringUtils;
+import org.goodiemania.hecate.server.listener.RequestContext;
 
 public class BodyContainsIgnoreCase extends When {
     private String searchString;
@@ -15,7 +15,7 @@ public class BodyContainsIgnoreCase extends When {
     }
 
     @Override
-    public boolean check(final Context context) {
-        return StringUtils.contains(context.body(), searchString);
+    public boolean check(final RequestContext context) {
+        return StringUtils.contains(context.getRequest().getBody(), searchString);
     }
 }

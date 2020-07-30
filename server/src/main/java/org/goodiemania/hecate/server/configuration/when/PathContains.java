@@ -1,7 +1,7 @@
 package org.goodiemania.hecate.server.configuration.when;
 
-import io.javalin.http.Context;
 import org.apache.commons.lang3.StringUtils;
+import org.goodiemania.hecate.server.listener.RequestContext;
 
 public class PathContains extends When {
     private String searchString;
@@ -15,7 +15,7 @@ public class PathContains extends When {
     }
 
     @Override
-    public boolean check(final Context context) {
-        return StringUtils.contains(context.path(), searchString);
+    public boolean check(final RequestContext context) {
+        return StringUtils.contains(context.getRequest().getPath(), searchString);
     }
 }

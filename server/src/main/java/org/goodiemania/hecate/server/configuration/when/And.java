@@ -1,6 +1,6 @@
 package org.goodiemania.hecate.server.configuration.when;
 
-import io.javalin.http.Context;
+import org.goodiemania.hecate.server.listener.RequestContext;
 
 public class And extends When {
     private When when1;
@@ -23,7 +23,7 @@ public class And extends When {
     }
 
     @Override
-    public boolean check(final Context context) {
+    public boolean check(final RequestContext context) {
         return when1.check(context) && when2.check(context);
     }
 }

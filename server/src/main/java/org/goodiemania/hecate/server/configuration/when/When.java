@@ -2,7 +2,7 @@ package org.goodiemania.hecate.server.configuration.when;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import io.javalin.http.Context;
+import org.goodiemania.hecate.server.listener.RequestContext;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
         include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "type")
@@ -22,7 +22,7 @@ public abstract class When {
         this.type = this.getClass().getSimpleName();
     }
 
-    public abstract boolean check(final Context context);
+    public abstract boolean check(final RequestContext context);
 
     public String getType() {
         return type;

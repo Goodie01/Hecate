@@ -1,15 +1,15 @@
 package org.goodiemania.hecate.server.configuration.then;
 
-import io.javalin.http.Context;
+import org.goodiemania.hecate.server.listener.RequestContext;
 
 public class StaticReturn extends Then {
     private String staticResponse;
     private int responseCode;
 
     @Override
-    public boolean doTheThing(final Context context) {
-        context.result(staticResponse);
-        context.status(responseCode);
+    public boolean process(final RequestContext context) {
+        context.getResponse().setBody(staticResponse);
+        context.getResponse().setStatusCode(responseCode);
 
         return false;
     }

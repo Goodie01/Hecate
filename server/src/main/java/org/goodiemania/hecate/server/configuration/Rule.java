@@ -1,8 +1,8 @@
 package org.goodiemania.hecate.server.configuration;
 
-import io.javalin.http.Context;
 import org.goodiemania.hecate.server.configuration.then.Then;
 import org.goodiemania.hecate.server.configuration.when.When;
+import org.goodiemania.hecate.server.listener.RequestContext;
 
 public class Rule {
     private When when;
@@ -13,9 +13,9 @@ public class Rule {
      * @param context Javalin context
      * @return returns true if the process should continue processing other rules after this
      */
-    public boolean process(final Context context) {
+    public boolean process(final RequestContext context) {
         if (when.check(context)) {
-            return then.doTheThing(context);
+            return then.process(context);
         }
 
         return true;
