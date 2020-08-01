@@ -1,16 +1,18 @@
 package org.goodiemania.hecate.server.configuration;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Configuration {
     private int adminPort;
-    private List<ListenerConfiguration> listeners;
+    private Map<String, ListenerConfiguration> listeners = new HashMap<>();
 
-    public List<ListenerConfiguration> getListeners() {
+    public Map<String, ListenerConfiguration> getListeners() {
         return listeners;
     }
 
-    public void setListeners(final List<ListenerConfiguration> listeners) {
+    public void setListeners(final Map<String, ListenerConfiguration> listeners) {
         this.listeners = listeners;
     }
 

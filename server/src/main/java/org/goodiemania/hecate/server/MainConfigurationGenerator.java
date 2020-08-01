@@ -55,7 +55,7 @@ public class MainConfigurationGenerator {
 
         final Configuration configuration = new Configuration();
         configuration.setAdminPort(1234);
-        configuration.setListeners(Collections.singletonList(listenerConfiguration));
+        configuration.getListeners().put(listenerConfiguration.getName(), listenerConfiguration);
 
         try {
             final String s = objectMapper.writeValueAsString(configuration);
