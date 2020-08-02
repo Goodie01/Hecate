@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import org.goodiemania.hecate.server.configuration.Configuration;
 import org.goodiemania.hecate.server.configuration.ListenerConfiguration;
 import org.goodiemania.hecate.server.configuration.Rule;
@@ -30,6 +32,7 @@ public class MainConfigurationGenerator {
         staticReturn.setStaticResponse("GeneralKonobi");
 
         final Rule rule0 = new Rule();
+        rule0.setId(UUID.randomUUID().toString());
         rule0.setWhen(bodyContains);
         rule0.setThen(staticReturn);
         rule0.setOrder(0);
@@ -47,11 +50,12 @@ public class MainConfigurationGenerator {
         staticReturn1.setStaticResponse("The secret is here");
 
         final Rule rule1 = new Rule();
+        rule1.setId(UUID.randomUUID().toString());
         rule1.setWhen(and);
         rule1.setThen(staticReturn1);
         rule1.setOrder(1);
 
-        listenerConfiguration.setRules(List.of(rule0, rule1));
+        listenerConfiguration.setRules(Map.of(rule0.getId(), rule0, rule1.getId(), rule1));
 
         final Configuration configuration = new Configuration();
         configuration.setAdminPort(1234);

@@ -2,38 +2,35 @@ package org.goodiemania.hecate.server.listener;
 
 import io.javalin.Javalin;
 import io.javalin.http.HandlerType;
-import java.util.List;
+import org.goodiemania.hecate.server.MetaContext;
 import org.goodiemania.hecate.server.configuration.ListenerConfiguration;
 import org.goodiemania.hecate.server.configuration.Rule;
 
-public class ListenerHolder {
-    private final MetaContext metaContext;
-    private final ListenerConfiguration listenerConfiguration;
-    private final Javalin javalinListener;
+public class ListenerManager {
+    private ListenerManager() {
+    }
 
-    public ListenerHolder(final MetaContext metaContext, final ListenerConfiguration listenerConfiguration) {
-        this.metaContext = metaContext;
-        this.listenerConfiguration = listenerConfiguration;
-        javalinListener = metaContext.getJavalinInstance(listenerConfiguration.getPort());
+    public static void setUp(final MetaContext metaContext, final ListenerConfiguration listenerConfiguration) {
+        final Javalin javalinListener = metaContext.getJavalinInstance(listenerConfiguration.getPort());
 
         javalinListener.addHandler(
                 HandlerType.valueOf(listenerConfiguration.getHttpMethod()),
                 listenerConfiguration.getContext(),
                 ctx -> {
                     final RequestContext requestContext = RequestContext.of(ctx);
+                    long startTime = System.currentTimeMillis();
 
-                    for (Rule rule : listenerConfiguration.getRules()) {
+                    for (Rule rule : listenerConfiguration.getRules().values()) {
                         if (!rule.process(requestContext)) {
                             break;
                         }
                     }
 
+                    long timeTaken = System.currentTimeMillis() - startTime;
                     processResponse(ctx, requestContext);
-                });
-    }
 
-    public void setUpRoles(final List<Rule> rules) {
-        this.listenerConfiguration.setRules(rules);
+                    metaContext.addLog(listenerConfiguration.getName(), Log.of(listenerConfiguration, requestContext, timeTaken));
+                });
     }
 
     private static void processResponse(final io.javalin.http.Context ctx, final RequestContext requestContext) {

@@ -1,6 +1,6 @@
 package org.goodiemania.hecate.server.configuration;
 
-import java.util.List;
+import java.util.Map;
 
 public class ListenerConfiguration {
     private String name;
@@ -8,7 +8,7 @@ public class ListenerConfiguration {
     private int port;
     private String httpMethod;
     private String context;
-    private List<Rule> rules;
+    private Map<String, Rule> rules;
 
     public String getName() {
         return name;
@@ -42,11 +42,11 @@ public class ListenerConfiguration {
         this.context = context;
     }
 
-    public List<Rule> getRules() {
+    public Map<String, Rule> getRules() {
         return rules;
     }
 
-    public void setRules(final List<Rule> rules) {
+    public void setRules(final Map<String, Rule> rules) {
         this.rules = rules;
     }
 }

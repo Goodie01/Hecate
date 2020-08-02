@@ -5,6 +5,7 @@ import org.goodiemania.hecate.server.configuration.when.When;
 import org.goodiemania.hecate.server.listener.RequestContext;
 
 public class Rule {
+    private String id;
     private When when;
     private Then then;
     private int order;
@@ -43,5 +44,13 @@ public class Rule {
 
     public void setThen(final Then then) {
         this.then = then;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(final String id) {
+        this.id = id;
     }
 }

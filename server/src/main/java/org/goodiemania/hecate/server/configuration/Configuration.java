@@ -1,7 +1,6 @@
 package org.goodiemania.hecate.server.configuration;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Configuration {
