@@ -1,3 +1,9 @@
+# https://www.smashingmagazine.com/2020/06/rest-api-react-fetch-axios/
+
+That link actually looks useful
+
+https://www.google.com/search?client=firefox-b-d&q=react+calling+rest+API+putting+on+screen
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
