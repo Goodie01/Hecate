@@ -37,10 +37,10 @@ public class MetaContext {
     }
 
     public synchronized void reStart() {
-        adminManager.start();
-
         javalinMap.values().forEach(Javalin::stop);
         javalinMap = new HashMap<>();
+
+        adminManager.start();
 
         configuration.getListeners().values()
                 .forEach(listenerConfiguration -> ListenerManager.setUp(this, listenerConfiguration));

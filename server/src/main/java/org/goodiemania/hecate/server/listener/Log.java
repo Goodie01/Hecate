@@ -19,7 +19,7 @@ public class Log {
     }
 
     public static Log of(final ListenerConfiguration config, final RequestContext requestContext, final long timeTaken) {
-        return new Log(config.getName(), requestContext.getRequest(), requestContext.getResponse(), timeTaken, LocalDateTime.now());
+        return new Log(config.getId(), requestContext.getRequest(), requestContext.getResponse(), timeTaken, LocalDateTime.now());
     }
 
     public String getListenerName() {

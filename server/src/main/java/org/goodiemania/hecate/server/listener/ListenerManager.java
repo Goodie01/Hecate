@@ -29,7 +29,7 @@ public class ListenerManager {
                     long timeTaken = System.currentTimeMillis() - startTime;
                     processResponse(ctx, requestContext);
 
-                    metaContext.addLog(listenerConfiguration.getName(), Log.of(listenerConfiguration, requestContext, timeTaken));
+                    metaContext.addLog(listenerConfiguration.getId(), Log.of(listenerConfiguration, requestContext, timeTaken));
                 });
     }
 

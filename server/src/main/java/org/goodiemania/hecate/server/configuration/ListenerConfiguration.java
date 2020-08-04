@@ -3,19 +3,19 @@ package org.goodiemania.hecate.server.configuration;
 import java.util.Map;
 
 public class ListenerConfiguration {
-    private String name;
+    private String id;
 
     private int port;
     private String httpMethod;
     private String context;
     private Map<String, Rule> rules;
 
-    public String getName() {
-        return name;
+    public String getId() {
+        return id;
     }
 
-    public void setName(final String name) {
-        this.name = name;
+    public void setId(final String id) {
+        this.id = id;
     }
 
     public int getPort() {

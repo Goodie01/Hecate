@@ -2,8 +2,6 @@ package org.goodiemania.hecate.server;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import org.goodiemania.hecate.server.configuration.Configuration;
@@ -19,7 +17,7 @@ public class MainConfigurationGenerator {
         final ObjectMapper objectMapper = new ObjectMapper();
 
         final ListenerConfiguration listenerConfiguration = new ListenerConfiguration();
-        listenerConfiguration.setName("bobbyDropTables");
+        listenerConfiguration.setId("bobbyDropTables");
         listenerConfiguration.setPort(8443);
         listenerConfiguration.setContext("/");
         listenerConfiguration.setHttpMethod("GET");
@@ -59,7 +57,7 @@ public class MainConfigurationGenerator {
 
         final Configuration configuration = new Configuration();
         configuration.setAdminPort(1234);
-        configuration.getListeners().put(listenerConfiguration.getName(), listenerConfiguration);
+        configuration.getListeners().put(listenerConfiguration.getId(), listenerConfiguration);
 
         try {
             final String s = objectMapper.writeValueAsString(configuration);
