@@ -3,9 +3,13 @@ package org.goodiemania.hecate.server.admin;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
+import java.time.ZonedDateTime;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 import org.goodiemania.hecate.server.MetaContext;
 import org.goodiemania.hecate.server.configuration.Configuration;
@@ -37,6 +41,7 @@ public class AdminManager {
         javalin.delete("configuration/:listenerName/rules/:ruleId", this::deleteRule);
 
 
+        javalin.get("logs/", this::getAllLogs);
         javalin.get("logs/:listenerName", this::getLogs);
         javalin.delete("logs/:listenerName", this::deleteLogs);
     }
@@ -48,6 +53,21 @@ public class AdminManager {
 
     private void getLogs(final Context ctx) {
         List<Log> logsList = metaContext.getLogs().getOrDefault(ctx.pathParam("listenerName"), Collections.emptyList());
+
+        try {
+            ctx.result(metaContext.getObjectMapper().writeValueAsString(logsList));
+            ctx.header("Access-Control-Allow-Origin", "*");
+        } catch (JsonProcessingException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    private void getAllLogs(final Context ctx) throws JsonProcessingException {
+        List<Log> logsList = metaContext.getLogs().values()
+                .stream()
+                .flatMap(Collection::stream)
+                .sorted(Comparator.comparing(Log::getTime))
+                .collect(Collectors.toList());
 
         try {
             ctx.result(metaContext.getObjectMapper().writeValueAsString(logsList));

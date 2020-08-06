@@ -1,21 +1,30 @@
 import React from 'react';
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
+import Container from "react-bootstrap/Container";
+
 const List = (props) => {
-    const { repos: listeners } = props;
-    if (!listeners || listeners.length === 0) return <p>No repos, sorry</p>;
+    const {repos: listeners} = props;
+    if (!listeners || listeners.length === 0) return <p>No listeners, sorry</p>;
     return (
-        <ul>
-            <h2 className='list-head'>Listeners</h2>
+        <Container>
+            <Row>
+                <Col>Id</Col>
+                <Col>Port</Col>
+                <Col>Http Method</Col>
+                <Col>Context path</Col>
+            </Row>
             {listeners.map((listener) => {
                 return (
-                    <li key={listener.id} className='list'>
-                        <span className='listener-name'>{listener.id} </span>
-                        <span className='listener-port'>{listener.port}</span>
-                        <span className='listener-method'>{listener.httpMethod}</span>
-                        <span className='listener-context'>{listener.context}</span>
-                    </li>
+                    <Row>
+                        <Col>{listener.id}</Col>
+                        <Col>{listener.port}</Col>
+                        <Col>{listener.httpMethod}</Col>
+                        <Col>{listener.context}</Col>
+                    </Row>
                 );
             })}
-        </ul>
+        </Container>
     );
 };
 export default List;

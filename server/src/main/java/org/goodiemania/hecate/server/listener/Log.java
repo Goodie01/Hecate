@@ -4,14 +4,14 @@ import java.time.LocalDateTime;
 import org.goodiemania.hecate.server.configuration.ListenerConfiguration;
 
 public class Log {
-    public final String listenerName;
+    public final String listenerId;
     private final RequestInfo request;
     private final ResponseInfo response;
     private final long timeTaken;
     private final LocalDateTime time;
 
-    private Log(final String listenerName, final RequestInfo request, final ResponseInfo response, final long timeTaken, final LocalDateTime time) {
-        this.listenerName = listenerName;
+    private Log(final String listenerId, final RequestInfo request, final ResponseInfo response, final long timeTaken, final LocalDateTime time) {
+        this.listenerId = listenerId;
         this.request = request;
         this.response = response;
         this.timeTaken = timeTaken;
@@ -22,8 +22,8 @@ public class Log {
         return new Log(config.getId(), requestContext.getRequest(), requestContext.getResponse(), timeTaken, LocalDateTime.now());
     }
 
-    public String getListenerName() {
-        return listenerName;
+    public String getListenerId() {
+        return listenerId;
     }
 
     public RequestInfo getRequest() {
