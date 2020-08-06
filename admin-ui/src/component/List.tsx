@@ -5,8 +5,9 @@ import Container from "react-bootstrap/Container";
 
 const List = (props) => {
     const {repos: listeners} = props;
-    if (!listeners || listeners.length === 0) return <p>No listeners, sorry</p>;
-    return (
+    if (!listeners) return <p>No listeners, sorry</p>;
+    else if (listeners.length === 0) return <p>Empty listeners, sorry</p>;
+    else return (
         <Container>
             <Row>
                 <Col>Id</Col>

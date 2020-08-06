@@ -1,10 +1,11 @@
 package org.goodiemania.hecate.server.listener;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 public class ResponseInfo {
-    private Map<String, List<String>> headers;
+    private Map<String, List<String>> headers = Collections.emptyMap();
     private String body;
     private int statusCode;
 

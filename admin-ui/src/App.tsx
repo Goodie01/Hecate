@@ -1,41 +1,45 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import {MemoryRouter} from 'react-router-dom';
-
-import Jumbotron from 'react-bootstrap/Jumbotron';
-
 import List from './component/List';
+import LogDispalyer from './component/LogDispalyer';
 import withListLoading from './component/withListLoading';
-import {listeners} from "cluster";
 
 
 function App() {
     const ListLoading = withListLoading(List);
+    const LogDispalyerLoading = withListLoading(LogDispalyer);
+    //TODO
+    //  create two useStates, one for listeners, one for logs????
     const [appState, setAppState] = useState({
-        loading: false,
+        loadingListeners: false,
+        loadingLogs: false,
         listeners: null,
+        listenerForLogs:null,
         logs: null
     });
 
     useEffect(() => {
-        setAppState({loading: true, listeners: null, logs: null});
+        appState.loadingListeners = true;
         const apiUrl = `http://localhost:1234/configuration`;
         fetch(apiUrl)
             .then((res) => res.json())
             .then((listeners) => {
-                setAppState({loading: false, listeners: listeners, logs:null});
+                appState.listeners = listeners;
+                appState.listenerForLogs = null;
+                appState.loadingListeners = false;
             });
-    }, [setAppState]);
+    }, [appState.listeners, appState.listenerForLogs]);
 
     useEffect(() => {
-        setAppState({loading: true, listeners: appState.listeners, logs: null});
+        appState.loadingLogs = true;
         const apiUrl = `http://localhost:1234/logs`;
         fetch(apiUrl)
             .then((res) => res.json())
-            .then((listeners) => {
-                setAppState({loading: false, listeners: listeners});
+            .then((logs) => {
+                appState.logs = logs;
+                appState.loadingLogs = false;
             });
-    }, [setAppState]);
+    }, [appState.logs, appState.loadingLogs]);
 
     return (
 
@@ -43,8 +47,11 @@ function App() {
             <div className='container'>
                 <h1 className="header">Welcome to Hecate - Admin UI</h1>
             </div>
-            <div className='repo-container'>
-                <ListLoading isLoading={appState.loading} repos={appState.listeners}/>
+            <div className='listeners-container'>
+                <ListLoading isLoading={appState.loadingListeners} repos={appState.listeners}/>
+            </div>
+            <div className='logs-container'>
+                <LogDispalyerLoading isLoading={appState.loadingLogs} repos={appState.logs}/>
             </div>
             <footer>
                 This is a footer

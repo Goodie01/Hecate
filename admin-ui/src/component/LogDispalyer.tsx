@@ -5,8 +5,9 @@ import Container from "react-bootstrap/Container";
 
 const List = (props) => {
     const {repos: logs} = props;
-    if (!logs || logs.length === 0) return <p>No logs, sorry</p>;
-    return (
+    if (!logs) return <p>No logs, sorry</p>;
+    else if (logs.length === 0) return <p>Empty logs, sorry</p>;
+    else return (
         <Container>
             <Row>
                 <Col>listener ID</Col>
@@ -18,9 +19,9 @@ const List = (props) => {
                 return (
                     <Row>
                         <Col>{log.listenerId}</Col>
-                        <Col>{log.time}</Col>
-                        <Col>{log.request}</Col>
-                        <Col>{log.response}</Col>
+                        <Col>{log.time.hour}</Col>
+                        <Col>{log.request.path}</Col>
+                        <Col>{log.response.path}</Col>
                     </Row>
                 );
             })}
