@@ -21,7 +21,7 @@ const List = (props) => {
                         <Col>{log.listenerId}</Col>
                         <Col>{log.time.hour}</Col>
                         <Col>{log.request.path}</Col>
-                        <Col>{log.response.path}</Col>
+                        <Col>{log.response.body}</Col>
                     </Row>
                 );
             })}
