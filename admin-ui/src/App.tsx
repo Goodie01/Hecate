@@ -3,8 +3,9 @@ import './App.css';
 import List from './component/List';
 import LogDispalyer from './component/LogDispalyer';
 import withListLoading from './component/withListLoading';
-import {log} from "util";
-
+import Container from "react-bootstrap/Container";
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 
 function App() {
     const ListLoading = withListLoading(List);
@@ -13,7 +14,7 @@ function App() {
     const [listenersState, setListenersState] = useState({
         loading: false,
         listeners: null,
-        listenerForLogs:null,
+        listenerForLogs: null,
     });
     const [logState, setLogState] = useState({
         loading: false,
@@ -21,41 +22,48 @@ function App() {
     });
 
     useEffect(() => {
-        setListenersState({loading: true, listeners: null, listenerForLogs: null });
+        setListenersState({loading: true, listeners: null, listenerForLogs: null});
         const apiUrl = `http://localhost:1234/configuration`;
         fetch(apiUrl)
             .then((res) => res.json())
             .then((listeners) => {
-                setListenersState({loading: false, listeners: listeners, listenerForLogs: null });
+                setListenersState({loading: false, listeners: listeners, listenerForLogs: null});
             });
     }, [setListenersState]);
 
     useEffect(() => {
-        setLogState({ loading: true, logs: null});
+        setLogState({loading: true, logs: null});
         const apiUrl = `http://localhost:1234/logs`;
         fetch(apiUrl)
             .then((res) => res.json())
             .then((logs) => {
-                setLogState({ loading: false, logs: logs});
+                setLogState({loading: false, logs: logs});
             });
     }, [setLogState]);
 
     return (
-
-        <div className='App'>
-            <div className='container'>
-                <h1 className="header">Welcome to Hecate - Admin UI</h1>
+        <Container className="min-100">
+            <div className="navbar navbar-dark bg-dark box-shadow">
+                <div className="container d-flex justify-content-between">
+                    <a href="#" className="navbar-brand d-flex align-items-center">
+                        <strong>Hecate - Admin UI</strong>
+                    </a>
+                </div>
             </div>
-            <div className='listeners-container'>
-                <ListLoading isLoading={listenersState.loading} repos={listenersState.listeners}/>
-            </div>
-            <div className='logs-container'>
-                <LogDispalyerLoading isLoading={logState.loading} repos={logState.logs}/>
-            </div>
+            <Row>
+                <Col>
+                    <ListLoading isLoading={listenersState.loading} repos={listenersState.listeners}/>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <LogDispalyerLoading isLoading={logState.loading} repos={logState.logs}/>
+                </Col>
+            </Row>
             <footer>
                 This is a footer
             </footer>
-        </div>
+        </Container>
     )
 }
 

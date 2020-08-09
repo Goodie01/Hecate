@@ -1,6 +1,9 @@
 package org.goodiemania.hecate.server;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import io.javalin.Javalin;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -15,7 +18,7 @@ import org.goodiemania.hecate.server.listener.ListenerManager;
 import org.goodiemania.hecate.server.listener.Log;
 
 public class MetaContext {
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private final ObjectMapper objectMapper;
     private final Configuration configuration;
     private final String propsLocation;
     private final AdminManager adminManager;
@@ -26,6 +29,12 @@ public class MetaContext {
     public MetaContext(final String propsLocation) {
         this.propsLocation = propsLocation;
 
+        this.objectMapper = JsonMapper.builder()
+                .addModule(new JavaTimeModule())
+                .configure(SerializationFeature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS, false)
+                .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+                .build();
+
         try (final FileReader fileReader = new FileReader(this.propsLocation)) {
             configuration = objectMapper.readValue(fileReader, Configuration.class);
         } catch (IOException e) {
@@ -34,6 +43,18 @@ public class MetaContext {
         }
 
         adminManager = new AdminManager(this, configuration);
+
+        System.out.println(""
+                + "   ▄█    █▄       ▄████████  ▄████████    ▄████████     ███        ▄████████ \n"
+                + "  ███    ███     ███    ███ ███    ███   ███    ███ ▀█████████▄   ███    ███ \n"
+                + "  ███    ███     ███    █▀  ███    █▀    ███    ███    ▀███▀▀██   ███    █▀  \n"
+                + " ▄███▄▄▄▄███▄▄  ▄███▄▄▄     ███          ███    ███     ███   ▀  ▄███▄▄▄     \n"
+                + "▀▀███▀▀▀▀███▀  ▀▀███▀▀▀     ███        ▀███████████     ███     ▀▀███▀▀▀     \n"
+                + "  ███    ███     ███    █▄  ███    █▄    ███    ███     ███       ███    █▄  \n"
+                + "  ███    ███     ███    ███ ███    ███   ███    ███     ███       ███    ███ \n"
+                + "  ███    █▀      ██████████ ████████▀    ███    █▀     ▄████▀     ██████████ \n"
+                + "                                                                             \n"
+                + "Welcome to the Hecate testing server");
     }
 
     public synchronized void reStart() {
@@ -70,7 +91,9 @@ public class MetaContext {
         Javalin javalin = javalinMap.get(port);
 
         if (javalin == null) {
-            javalin = Javalin.create().start(port);
+            javalin = Javalin.create();
+            javalin.config.showJavalinBanner = false;
+            javalin.start(port);
             javalinMap.put(port, javalin);
         }
 

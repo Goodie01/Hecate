@@ -19,7 +19,7 @@ const List = (props) => {
                 return (
                     <Row>
                         <Col>{log.listenerId}</Col>
-                        <Col>{log.time.hour}</Col>
+                        <Col>{log.time}</Col>
                         <Col>{log.request.path}</Col>
                         <Col>{log.response.body}</Col>
                     </Row>
