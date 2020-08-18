@@ -17,7 +17,7 @@ function App() {
         listenerForLogs: null,
     });
     const [logState, setLogState] = useState({
-        loading: false,
+        loadingFirstTime: true,
         logs: null
     });
 
@@ -31,18 +31,28 @@ function App() {
             });
     }, [setListenersState]);
 
-    useEffect(() => {
-        setLogState({loading: true, logs: null});
+    function updateLogs() {
+        setLogState({loadingFirstTime: logState.loadingFirstTime, logs: null});
         const apiUrl = `http://localhost:1234/logs`;
         fetch(apiUrl)
             .then((res) => res.json())
             .then((logs) => {
-                setLogState({loading: false, logs: logs});
+                setLogState({loadingFirstTime: false, logs: logs});
             });
+    }
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            updateLogs();
+        }, 10000);
+
+        updateLogs();
+
+        return () => clearInterval(interval);
     }, [setLogState]);
 
     return (
-        <Container className="min-100">
+        <Container fluid={true} className="min-100">
             <div className="navbar navbar-dark bg-dark box-shadow">
                 <div className="container d-flex justify-content-between">
                     <a href="#" className="navbar-brand d-flex align-items-center">
@@ -57,7 +67,7 @@ function App() {
             </Row>
             <Row>
                 <Col>
-                    <LogDispalyerLoading isLoading={logState.loading} repos={logState.logs}/>
+                    <LogDispalyerLoading isLoading={logState.loadingFirstTime} repos={logState.logs}/>
                 </Col>
             </Row>
             <footer>

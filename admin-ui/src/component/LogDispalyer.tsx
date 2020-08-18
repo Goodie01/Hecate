@@ -8,7 +8,7 @@ const List = (props) => {
     if (!logs) return <p>No logs, sorry</p>;
     else if (logs.length === 0) return <p>Empty logs, sorry</p>;
     else return (
-        <Container>
+        <Container fluid={true}>
             <Row>
                 <Col>listener ID</Col>
                 <Col>Time</Col>

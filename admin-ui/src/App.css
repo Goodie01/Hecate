@@ -3,6 +3,7 @@
 :root {
     --basic-color: #23cc71;
     height: 100%;
+    min-height: 100%;
 }
 
 .App {
