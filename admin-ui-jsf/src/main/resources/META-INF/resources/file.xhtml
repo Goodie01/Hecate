@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <f:view contentType="text/html">
+        <h:head>
+
+        </h:head>
+
+        <h:body>            
+            Advanced:
+            <h:form id="test" enctype="multipart/form-data">
+                <p:fileUpload
+                    label="test"
+                    mode="advanced"
+                    skinSimple="true" listener="#{fileView.handleFileUpload}"
+                    auto="true"/>
+            </h:form>
+
+            <br />
+            <br />
+
+            Simple:
+            <h:form id="test1" enctype="multipart/form-data">
+                <p:fileUpload value="#{fileView.file}" mode="simple" skinSimple="false"/>
+
+                <p:commandButton id="submit1" value="Submit" ajax="false" action="#{fileView.upload}"/>        
+                <h:commandButton id="submit2" value="Submit" action="#{fileView.upload}"/>
+
+            </h:form>
+        </h:body>
+    </f:view>
+</html>

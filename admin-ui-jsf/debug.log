@@ -1,0 +1,189 @@
+2020-08-20 17:59:47,314 desktop-3q2tl4i target/quarkus-myfaces-showcase-1.0-SNAPSHOT-runner.jar[8908] INFO  [org.apa.myf.web.MyFacesContainerInitializer] (main) Using org.apache.myfaces.webapp.MyFacesContainerInitializer
+2020-08-20 17:59:47,695 desktop-3q2tl4i target/quarkus-myfaces-showcase-1.0-SNAPSHOT-runner.jar[8908] INFO  [org.apa.myf.uti.ExternalSpecifications] (main) MyFaces Core Bean Validation support disabled
+2020-08-20 17:59:47,810 desktop-3q2tl4i target/quarkus-myfaces-showcase-1.0-SNAPSHOT-runner.jar[8908] INFO  [org.apa.myf.uti.ExternalSpecifications] (main) MyFaces Core CDI support enabled
+2020-08-20 17:59:47,810 desktop-3q2tl4i target/quarkus-myfaces-showcase-1.0-SNAPSHOT-runner.jar[8908] INFO  [org.apa.myf.uti.ExternalSpecifications] (main) MyFaces Core EL 3.0 support enabled
+2020-08-20 17:59:47,811 desktop-3q2tl4i target/quarkus-myfaces-showcase-1.0-SNAPSHOT-runner.jar[8908] INFO  [org.apa.myf.uti.ExternalSpecifications] (main) MyFaces Core Servlet 4.0 support enabled
+2020-08-20 17:59:47,843 desktop-3q2tl4i target/quarkus-myfaces-showcase-1.0-SNAPSHOT-runner.jar[8908] INFO  [org.pri.web.PostConstructApplicationEventListener] (main) Running on PrimeFaces 8.0
+2020-08-20 17:59:47,845 desktop-3q2tl4i target/quarkus-myfaces-showcase-1.0-SNAPSHOT-runner.jar[8908] INFO  [io.und.web.jsr] (main) UT026005: Adding programmatic server endpoint class org.apache.myfaces.push.EndpointImpl for path /javax.faces.push/{channel}
+2020-08-20 17:59:47,893 desktop-3q2tl4i target/quarkus-myfaces-showcase-1.0-SNAPSHOT-runner.jar[8908] WARNING [org.apa.myf.web.AbstractFacesInitializer] (main) 
+
+********************************************************************
+*** WARNING: Apache MyFaces Core is running in DEVELOPMENT mode. ***
+***                                            ^^^^^^^^^^^       ***
+*** Do NOT deploy to your live server(s) without changing this.  ***
+*** See Application#getProjectStage() for more information.      ***
+********************************************************************
+
+
+2020-08-20 17:59:47,894 desktop-3q2tl4i target/quarkus-myfaces-showcase-1.0-SNAPSHOT-runner.jar[8908] INFO  [org.apa.myf.web.StartupServletContextListener] (main) MyFaces Core has started, it took [578] ms.
+2020-08-20 17:59:48,241 desktop-3q2tl4i target/quarkus-myfaces-showcase-1.0-SNAPSHOT-runner.jar[8908] INFO  [io.quarkus] (main) quarkus-myfaces-showcase 1.0-SNAPSHOT on JVM (powered by Quarkus 1.7.0.Final) started in 3.254s. Listening on: http://0.0.0.0:8080
+2020-08-20 17:59:48,241 desktop-3q2tl4i target/quarkus-myfaces-showcase-1.0-SNAPSHOT-runner.jar[8908] INFO  [io.quarkus] (main) Profile prod activated. 
+2020-08-20 17:59:48,242 desktop-3q2tl4i target/quarkus-myfaces-showcase-1.0-SNAPSHOT-runner.jar[8908] INFO  [io.quarkus] (main) Installed features: [cdi, myfaces, servlet, undertow-websockets]
+2020-08-20 21:30:05,280 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [org.apa.myf.web.MyFacesContainerInitializer] (main) Using org.apache.myfaces.webapp.MyFacesContainerInitializer
+2020-08-20 21:30:05,639 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [org.apa.myf.uti.ExternalSpecifications] (main) MyFaces Core Bean Validation support disabled
+2020-08-20 21:30:05,757 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [org.apa.myf.uti.ExternalSpecifications] (main) MyFaces Core CDI support enabled
+2020-08-20 21:30:05,757 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [org.apa.myf.uti.ExternalSpecifications] (main) MyFaces Core EL 3.0 support enabled
+2020-08-20 21:30:05,758 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [org.apa.myf.uti.ExternalSpecifications] (main) MyFaces Core Servlet 4.0 support enabled
+2020-08-20 21:30:05,794 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [org.pri.web.PostConstructApplicationEventListener] (main) Running on PrimeFaces 8.0
+2020-08-20 21:30:05,796 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [io.und.web.jsr] (main) UT026005: Adding programmatic server endpoint class org.apache.myfaces.push.EndpointImpl for path /javax.faces.push/{channel}
+2020-08-20 21:30:05,842 desktop-3q2tl4i target/admin-ui-runner.jar[14400] WARNING [org.apa.myf.web.AbstractFacesInitializer] (main) 
+
+********************************************************************
+*** WARNING: Apache MyFaces Core is running in DEVELOPMENT mode. ***
+***                                            ^^^^^^^^^^^       ***
+*** Do NOT deploy to your live server(s) without changing this.  ***
+*** See Application#getProjectStage() for more information.      ***
+********************************************************************
+
+
+2020-08-20 21:30:05,842 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [org.apa.myf.web.StartupServletContextListener] (main) MyFaces Core has started, it took [559] ms.
+2020-08-20 21:30:06,202 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [io.quarkus] (main) admin-ui 0.1.0-SNAPSHOT on JVM (powered by Quarkus 1.7.0.Final) started in 2.205s. Listening on: http://0.0.0.0:8080
+2020-08-20 21:30:06,202 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [io.quarkus] (main) Profile prod activated. 
+2020-08-20 21:30:06,202 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [io.quarkus] (main) Installed features: [cdi, myfaces, servlet, undertow-websockets]
+2020-08-20 21:32:22,646 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [org.apa.myf.cor.ext.qua.sho.vie.SocketView] (executor-thread-6) send push message
+2020-08-20 21:32:23,677 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [org.apa.myf.cor.ext.qua.sho.vie.SocketView] (executor-thread-6) send push message
+2020-08-20 21:34:46,024 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [org.apa.myf.cor.ext.qua.sho.vie.SocketView] (executor-thread-6) send push message from input box::hi
+2020-08-20 21:34:48,430 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [org.apa.myf.cor.ext.qua.sho.vie.SocketView] (executor-thread-6) send push message
+2020-08-20 21:34:49,473 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [org.apa.myf.cor.ext.qua.sho.vie.SocketView] (executor-thread-6) send push message from input box::hi
+2020-08-20 21:34:51,829 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [org.apa.myf.cor.ext.qua.sho.vie.SocketView] (executor-thread-6) send push message from input box::hi
+2020-08-20 21:34:52,499 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [org.apa.myf.cor.ext.qua.sho.vie.SocketView] (executor-thread-6) send push message from input box::hi
+2020-08-20 21:34:52,861 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [org.apa.myf.cor.ext.qua.sho.vie.SocketView] (executor-thread-6) send push message from input box::hi
+2020-08-20 21:34:53,233 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [org.apa.myf.cor.ext.qua.sho.vie.SocketView] (executor-thread-6) send push message from input box::hi
+2020-08-20 21:34:53,672 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [org.apa.myf.cor.ext.qua.sho.vie.SocketView] (executor-thread-6) send push message from input box::hi
+2020-08-20 21:36:20,330 desktop-3q2tl4i target/admin-ui-runner.jar[14400] ERROR [io.qua.arc.imp.InstanceHandleImpl] (main) Error occurred while destroying instance of bean [org.apache.myfaces.cdi.view.ViewScopeBeanHolder_Bean]: javax.enterprise.context.ContextNotActiveException: interface javax.enterprise.context.SessionScoped
+2020-08-20 21:36:20,342 desktop-3q2tl4i target/admin-ui-runner.jar[14400] INFO  [io.quarkus] (main) admin-ui stopped in 0.034s
+2020-08-20 21:37:21,321 desktop-3q2tl4i target/admin-ui-runner.jar[7864] INFO  [org.apa.myf.web.MyFacesContainerInitializer] (main) Using org.apache.myfaces.webapp.MyFacesContainerInitializer
+2020-08-20 21:37:21,694 desktop-3q2tl4i target/admin-ui-runner.jar[7864] INFO  [org.apa.myf.uti.ExternalSpecifications] (main) MyFaces Core Bean Validation support disabled
+2020-08-20 21:37:21,807 desktop-3q2tl4i target/admin-ui-runner.jar[7864] INFO  [org.apa.myf.uti.ExternalSpecifications] (main) MyFaces Core CDI support enabled
+2020-08-20 21:37:21,808 desktop-3q2tl4i target/admin-ui-runner.jar[7864] INFO  [org.apa.myf.uti.ExternalSpecifications] (main) MyFaces Core EL 3.0 support enabled
+2020-08-20 21:37:21,809 desktop-3q2tl4i target/admin-ui-runner.jar[7864] INFO  [org.apa.myf.uti.ExternalSpecifications] (main) MyFaces Core Servlet 4.0 support enabled
+2020-08-20 21:37:21,835 desktop-3q2tl4i target/admin-ui-runner.jar[7864] INFO  [org.pri.web.PostConstructApplicationEventListener] (main) Running on PrimeFaces 8.0
+2020-08-20 21:37:21,837 desktop-3q2tl4i target/admin-ui-runner.jar[7864] INFO  [io.und.web.jsr] (main) UT026005: Adding programmatic server endpoint class org.apache.myfaces.push.EndpointImpl for path /javax.faces.push/{channel}
+2020-08-20 21:37:21,887 desktop-3q2tl4i target/admin-ui-runner.jar[7864] WARNING [org.apa.myf.web.AbstractFacesInitializer] (main) 
+
+********************************************************************
+*** WARNING: Apache MyFaces Core is running in DEVELOPMENT mode. ***
+***                                            ^^^^^^^^^^^       ***
+*** Do NOT deploy to your live server(s) without changing this.  ***
+*** See Application#getProjectStage() for more information.      ***
+********************************************************************
+
+
+2020-08-20 21:37:21,888 desktop-3q2tl4i target/admin-ui-runner.jar[7864] INFO  [org.apa.myf.web.StartupServletContextListener] (main) MyFaces Core has started, it took [565] ms.
+2020-08-20 21:37:22,243 desktop-3q2tl4i target/admin-ui-runner.jar[7864] INFO  [io.quarkus] (main) admin-ui 0.1.0-SNAPSHOT on JVM (powered by Quarkus 1.7.0.Final) started in 2.169s. Listening on: http://0.0.0.0:8080
+2020-08-20 21:37:22,243 desktop-3q2tl4i target/admin-ui-runner.jar[7864] INFO  [io.quarkus] (main) Profile prod activated. 
+2020-08-20 21:37:22,244 desktop-3q2tl4i target/admin-ui-runner.jar[7864] INFO  [io.quarkus] (main) Installed features: [cdi, myfaces, servlet, undertow-websockets]
+2020-08-20 21:51:04,978 desktop-3q2tl4i target/admin-ui-runner.jar[7864] WARNING [org.apa.myf.app.ResourceHandlerImpl] (executor-thread-2) Error trying to load and send resource components.css with library primefaces: java.lang.IllegalStateException: UT000127: Response has already been sent: java.io.IOException: java.lang.IllegalStateException: UT000127: Response has already been sent
+	at io.undertow.servlet.spec.ServletOutputStreamImpl.write(ServletOutputStreamImpl.java:163)
+	at org.apache.myfaces.application.ResourceHandlerImpl.pipeBytes(ResourceHandlerImpl.java:648)
+	at org.apache.myfaces.application.ResourceHandlerImpl.handleResourceRequest(ResourceHandlerImpl.java:589)
+	at javax.faces.application.ResourceHandlerWrapper.handleResourceRequest(ResourceHandlerWrapper.java:72)
+	at org.primefaces.application.resource.PrimeResourceHandler.handleResourceRequest(PrimeResourceHandler.java:97)
+	at javax.faces.webapp.FacesServlet.service(FacesServlet.java:199)
+	at io.undertow.servlet.handlers.ServletHandler.handleRequest(ServletHandler.java:74)
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:129)
+	at io.undertow.websockets.jsr.JsrWebSocketFilter.doFilter(JsrWebSocketFilter.java:160)
+	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61)
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131)
+	at io.undertow.servlet.handlers.FilterHandler.handleRequest(FilterHandler.java:84)
+	at io.undertow.servlet.handlers.security.ServletSecurityRoleHandler.handleRequest(ServletSecurityRoleHandler.java:63)
+	at io.undertow.servlet.handlers.ServletChain$1.handleRequest(ServletChain.java:68)
+	at io.undertow.servlet.handlers.ServletDispatchingHandler.handleRequest(ServletDispatchingHandler.java:36)
+	at io.undertow.servlet.handlers.RedirectDirHandler.handleRequest(RedirectDirHandler.java:67)
+	at io.undertow.servlet.handlers.security.SSLInformationAssociationHandler.handleRequest(SSLInformationAssociationHandler.java:133)
+	at io.undertow.servlet.handlers.security.ServletAuthenticationCallHandler.handleRequest(ServletAuthenticationCallHandler.java:57)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at io.undertow.security.handlers.AbstractConfidentialityHandler.handleRequest(AbstractConfidentialityHandler.java:46)
+	at io.undertow.servlet.handlers.security.ServletConfidentialityConstraintHandler.handleRequest(ServletConfidentialityConstraintHandler.java:65)
+	at io.undertow.security.handlers.AuthenticationMechanismsHandler.handleRequest(AuthenticationMechanismsHandler.java:60)
+	at io.undertow.servlet.handlers.security.CachedAuthenticatedSessionHandler.handleRequest(CachedAuthenticatedSessionHandler.java:77)
+	at io.undertow.security.handlers.NotificationReceiverHandler.handleRequest(NotificationReceiverHandler.java:50)
+	at io.undertow.security.handlers.AbstractSecurityContextAssociationHandler.handleRequest(AbstractSecurityContextAssociationHandler.java:43)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at io.undertow.servlet.handlers.ServletInitialHandler.handleFirstRequest(ServletInitialHandler.java:247)
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$100(ServletInitialHandler.java:56)
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:111)
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:108)
+	at io.undertow.servlet.core.ServletRequestContextThreadSetupAction$1.call(ServletRequestContextThreadSetupAction.java:48)
+	at io.undertow.servlet.core.ContextClassLoaderSetupAction$1.call(ContextClassLoaderSetupAction.java:43)
+	at io.quarkus.undertow.runtime.UndertowDeploymentRecorder$10$1.call(UndertowDeploymentRecorder.java:567)
+	at io.undertow.servlet.handlers.ServletInitialHandler.dispatchRequest(ServletInitialHandler.java:227)
+	at io.undertow.servlet.handlers.ServletInitialHandler.handleRequest(ServletInitialHandler.java:152)
+	at io.undertow.server.handlers.HttpContinueReadHandler.handleRequest(HttpContinueReadHandler.java:43)
+	at io.quarkus.undertow.runtime.UndertowDeploymentRecorder$1.handleRequest(UndertowDeploymentRecorder.java:114)
+	at io.undertow.server.Connectors.executeRootHandler(Connectors.java:290)
+	at io.undertow.server.DefaultExchangeHandler.handle(DefaultExchangeHandler.java:18)
+	at io.quarkus.undertow.runtime.UndertowDeploymentRecorder$6$1.run(UndertowDeploymentRecorder.java:398)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.jboss.threads.ContextClassLoaderSavingRunnable.run(ContextClassLoaderSavingRunnable.java:35)
+	at org.jboss.threads.EnhancedQueueExecutor.safeRun(EnhancedQueueExecutor.java:2046)
+	at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.doRunTask(EnhancedQueueExecutor.java:1578)
+	at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1452)
+	at org.jboss.threads.DelegatingRunnable.run(DelegatingRunnable.java:29)
+	at org.jboss.threads.ThreadLocalResettingRunnable.run(ThreadLocalResettingRunnable.java:29)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+	at org.jboss.threads.JBossThread.run(JBossThread.java:479)
+Caused by: java.lang.IllegalStateException: UT000127: Response has already been sent
+	at io.undertow.server.HttpServerExchange.writeBlocking(HttpServerExchange.java:1001)
+	at io.undertow.servlet.spec.ServletOutputStreamImpl.write(ServletOutputStreamImpl.java:155)
+	... 50 more
+
+2020-08-20 21:51:04,991 desktop-3q2tl4i target/admin-ui-runner.jar[7864] WARNING [org.apa.myf.app.ResourceHandlerImpl] (executor-thread-2) Error trying to load and send resource primeicons/primeicons.css with library primefaces: java.lang.IllegalStateException: UT000127: Response has already been sent: java.io.IOException: java.lang.IllegalStateException: UT000127: Response has already been sent
+	at io.undertow.servlet.spec.ServletOutputStreamImpl.close(ServletOutputStreamImpl.java:249)
+	at org.apache.myfaces.application.ResourceHandlerImpl.handleResourceRequest(ResourceHandlerImpl.java:604)
+	at javax.faces.application.ResourceHandlerWrapper.handleResourceRequest(ResourceHandlerWrapper.java:72)
+	at org.primefaces.application.resource.PrimeResourceHandler.handleResourceRequest(PrimeResourceHandler.java:97)
+	at javax.faces.webapp.FacesServlet.service(FacesServlet.java:199)
+	at io.undertow.servlet.handlers.ServletHandler.handleRequest(ServletHandler.java:74)
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:129)
+	at io.undertow.websockets.jsr.JsrWebSocketFilter.doFilter(JsrWebSocketFilter.java:160)
+	at io.undertow.servlet.core.ManagedFilter.doFilter(ManagedFilter.java:61)
+	at io.undertow.servlet.handlers.FilterHandler$FilterChainImpl.doFilter(FilterHandler.java:131)
+	at io.undertow.servlet.handlers.FilterHandler.handleRequest(FilterHandler.java:84)
+	at io.undertow.servlet.handlers.security.ServletSecurityRoleHandler.handleRequest(ServletSecurityRoleHandler.java:63)
+	at io.undertow.servlet.handlers.ServletChain$1.handleRequest(ServletChain.java:68)
+	at io.undertow.servlet.handlers.ServletDispatchingHandler.handleRequest(ServletDispatchingHandler.java:36)
+	at io.undertow.servlet.handlers.RedirectDirHandler.handleRequest(RedirectDirHandler.java:67)
+	at io.undertow.servlet.handlers.security.SSLInformationAssociationHandler.handleRequest(SSLInformationAssociationHandler.java:133)
+	at io.undertow.servlet.handlers.security.ServletAuthenticationCallHandler.handleRequest(ServletAuthenticationCallHandler.java:57)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at io.undertow.security.handlers.AbstractConfidentialityHandler.handleRequest(AbstractConfidentialityHandler.java:46)
+	at io.undertow.servlet.handlers.security.ServletConfidentialityConstraintHandler.handleRequest(ServletConfidentialityConstraintHandler.java:65)
+	at io.undertow.security.handlers.AuthenticationMechanismsHandler.handleRequest(AuthenticationMechanismsHandler.java:60)
+	at io.undertow.servlet.handlers.security.CachedAuthenticatedSessionHandler.handleRequest(CachedAuthenticatedSessionHandler.java:77)
+	at io.undertow.security.handlers.NotificationReceiverHandler.handleRequest(NotificationReceiverHandler.java:50)
+	at io.undertow.security.handlers.AbstractSecurityContextAssociationHandler.handleRequest(AbstractSecurityContextAssociationHandler.java:43)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at io.undertow.server.handlers.PredicateHandler.handleRequest(PredicateHandler.java:43)
+	at io.undertow.servlet.handlers.ServletInitialHandler.handleFirstRequest(ServletInitialHandler.java:247)
+	at io.undertow.servlet.handlers.ServletInitialHandler.access$100(ServletInitialHandler.java:56)
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:111)
+	at io.undertow.servlet.handlers.ServletInitialHandler$2.call(ServletInitialHandler.java:108)
+	at io.undertow.servlet.core.ServletRequestContextThreadSetupAction$1.call(ServletRequestContextThreadSetupAction.java:48)
+	at io.undertow.servlet.core.ContextClassLoaderSetupAction$1.call(ContextClassLoaderSetupAction.java:43)
+	at io.quarkus.undertow.runtime.UndertowDeploymentRecorder$10$1.call(UndertowDeploymentRecorder.java:567)
+	at io.undertow.servlet.handlers.ServletInitialHandler.dispatchRequest(ServletInitialHandler.java:227)
+	at io.undertow.servlet.handlers.ServletInitialHandler.handleRequest(ServletInitialHandler.java:152)
+	at io.undertow.server.handlers.HttpContinueReadHandler.handleRequest(HttpContinueReadHandler.java:43)
+	at io.quarkus.undertow.runtime.UndertowDeploymentRecorder$1.handleRequest(UndertowDeploymentRecorder.java:114)
+	at io.undertow.server.Connectors.executeRootHandler(Connectors.java:290)
+	at io.undertow.server.DefaultExchangeHandler.handle(DefaultExchangeHandler.java:18)
+	at io.quarkus.undertow.runtime.UndertowDeploymentRecorder$6$1.run(UndertowDeploymentRecorder.java:398)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at org.jboss.threads.ContextClassLoaderSavingRunnable.run(ContextClassLoaderSavingRunnable.java:35)
+	at org.jboss.threads.EnhancedQueueExecutor.safeRun(EnhancedQueueExecutor.java:2046)
+	at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.doRunTask(EnhancedQueueExecutor.java:1578)
+	at org.jboss.threads.EnhancedQueueExecutor$ThreadBody.run(EnhancedQueueExecutor.java:1452)
+	at org.jboss.threads.DelegatingRunnable.run(DelegatingRunnable.java:29)
+	at org.jboss.threads.ThreadLocalResettingRunnable.run(ThreadLocalResettingRunnable.java:29)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+	at org.jboss.threads.JBossThread.run(JBossThread.java:479)
+Caused by: java.lang.IllegalStateException: UT000127: Response has already been sent
+	at io.undertow.server.HttpServerExchange.writeBlocking(HttpServerExchange.java:1001)
+	at io.undertow.servlet.spec.ServletOutputStreamImpl.close(ServletOutputStreamImpl.java:236)
+	... 49 more
+
+2020-08-20 22:34:26,792 desktop-3q2tl4i target/admin-ui-runner.jar[7864] INFO  [io.quarkus] (main) admin-ui stopped in 0.024s
