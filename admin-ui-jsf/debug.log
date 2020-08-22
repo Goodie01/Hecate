@@ -187,3 +187,25 @@ Caused by: java.lang.IllegalStateException: UT000127: Response has already been 
 	... 49 more
 
 2020-08-20 22:34:26,792 desktop-3q2tl4i target/admin-ui-runner.jar[7864] INFO  [io.quarkus] (main) admin-ui stopped in 0.024s
+2020-08-21 21:52:24,149 desktop-3q2tl4i target/admin-ui-jsf-runner.jar[12140] INFO  [org.apa.myf.web.MyFacesContainerInitializer] (main) Using org.apache.myfaces.webapp.MyFacesContainerInitializer
+2020-08-21 21:52:24,542 desktop-3q2tl4i target/admin-ui-jsf-runner.jar[12140] INFO  [org.apa.myf.uti.ExternalSpecifications] (main) MyFaces Core Bean Validation support disabled
+2020-08-21 21:52:24,663 desktop-3q2tl4i target/admin-ui-jsf-runner.jar[12140] INFO  [org.apa.myf.uti.ExternalSpecifications] (main) MyFaces Core CDI support enabled
+2020-08-21 21:52:24,663 desktop-3q2tl4i target/admin-ui-jsf-runner.jar[12140] INFO  [org.apa.myf.uti.ExternalSpecifications] (main) MyFaces Core EL 3.0 support enabled
+2020-08-21 21:52:24,664 desktop-3q2tl4i target/admin-ui-jsf-runner.jar[12140] INFO  [org.apa.myf.uti.ExternalSpecifications] (main) MyFaces Core Servlet 4.0 support enabled
+2020-08-21 21:52:24,703 desktop-3q2tl4i target/admin-ui-jsf-runner.jar[12140] INFO  [org.pri.web.PostConstructApplicationEventListener] (main) Running on PrimeFaces 8.0
+2020-08-21 21:52:24,706 desktop-3q2tl4i target/admin-ui-jsf-runner.jar[12140] INFO  [io.und.web.jsr] (main) UT026005: Adding programmatic server endpoint class org.apache.myfaces.push.EndpointImpl for path /javax.faces.push/{channel}
+2020-08-21 21:52:24,750 desktop-3q2tl4i target/admin-ui-jsf-runner.jar[12140] WARNING [org.apa.myf.web.AbstractFacesInitializer] (main) 
+
+********************************************************************
+*** WARNING: Apache MyFaces Core is running in DEVELOPMENT mode. ***
+***                                            ^^^^^^^^^^^       ***
+*** Do NOT deploy to your live server(s) without changing this.  ***
+*** See Application#getProjectStage() for more information.      ***
+********************************************************************
+
+
+2020-08-21 21:52:24,751 desktop-3q2tl4i target/admin-ui-jsf-runner.jar[12140] INFO  [org.apa.myf.web.StartupServletContextListener] (main) MyFaces Core has started, it took [599] ms.
+2020-08-21 21:52:25,123 desktop-3q2tl4i target/admin-ui-jsf-runner.jar[12140] INFO  [io.quarkus] (main) admin-ui-jsf 0.1.0-SNAPSHOT on JVM (powered by Quarkus 1.7.0.Final) started in 1.660s. Listening on: http://0.0.0.0:8080
+2020-08-21 21:52:25,123 desktop-3q2tl4i target/admin-ui-jsf-runner.jar[12140] INFO  [io.quarkus] (main) Profile prod activated. 
+2020-08-21 21:52:25,123 desktop-3q2tl4i target/admin-ui-jsf-runner.jar[12140] INFO  [io.quarkus] (main) Installed features: [cdi, myfaces, servlet, undertow-websockets]
+2020-08-22 10:46:04,682 desktop-3q2tl4i target/admin-ui-jsf-runner.jar[12140] INFO  [io.quarkus] (main) admin-ui-jsf stopped in 0.028s
