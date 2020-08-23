@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.goodiemania.hecate.logs.Log;
 import org.goodiemania.hecate.managers.admin.AdminManager;
 import org.goodiemania.hecate.configuration.Configuration;
 import org.goodiemania.hecate.managers.listeners.ListenerManager;
-import org.goodiemania.hecate.logs.Log;
 
 public class MetaContext {
     private final ObjectMapper objectMapper;

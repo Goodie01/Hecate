@@ -2,11 +2,12 @@ package org.goodiemania.hecate.managers.listeners;
 
 import io.javalin.Javalin;
 import io.javalin.http.HandlerType;
+import java.util.Collections;
 import java.util.Map;
+import org.goodiemania.hecate.MetaContext;
 import org.goodiemania.hecate.confuration.ListenerConfiguration;
 import org.goodiemania.hecate.confuration.Rule;
 import org.goodiemania.hecate.logs.Log;
-import org.goodiemania.hecate.MetaContext;
 
 public class ListenerManager {
     private ListenerManager() {
@@ -41,6 +42,18 @@ public class ListenerManager {
     }
 
     private static void processResponse(final io.javalin.http.Context ctx, final RequestContext requestContext) {
+        if (requestContext.getResponse().getStatusCode() <= 0) {
+            requestContext.getResponse().setStatusCode(418);
+        }
+
+        if (requestContext.getResponse().getBody() == null) {
+            requestContext.getResponse().setBody("");
+        }
+
+        if (requestContext.getResponse().getHeaders() == null) {
+            requestContext.getResponse().setHeaders(Collections.emptyMap());
+        }
+
         requestContext.getResponse().getHeaders().forEach((key, values) -> values.forEach(value -> ctx.header(key, value)));
         ctx.result(requestContext.getResponse().getBody());
         ctx.status(requestContext.getResponse().getStatusCode());
