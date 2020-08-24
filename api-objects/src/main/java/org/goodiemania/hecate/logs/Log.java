@@ -3,6 +3,8 @@ package org.goodiemania.hecate.logs;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.ZonedDateTime;
 import java.util.UUID;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.goodiemania.hecate.managers.listeners.RequestContext;
 import org.goodiemania.hecate.managers.listeners.RequestInfo;
 import org.goodiemania.hecate.managers.listeners.ResponseInfo;
@@ -91,5 +93,25 @@ public class Log {
 
     public void setTime(final ZonedDateTime time) {
         this.time = time;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        final Log log = (Log) o;
+
+        return new EqualsBuilder()
+                .append(id, log.id)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .toHashCode();
     }
 }

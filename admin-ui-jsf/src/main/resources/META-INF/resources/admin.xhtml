@@ -2,27 +2,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" >
 
 <f:view contentType="text/html">
     <h:head>
+        <title>JSF 2.3: Websocket Sample</title>
     </h:head>
 
     <h:body>
-        <p:growl>
-            <p:autoUpdate/>
-        </p:growl>
-
         <h:form id="form">
-            <f:websocket channel="push">
-                <f:ajax event="UpdateLogs" render=":logTable"/>
+            <f:websocket channel="pushChannel">
+                <f:ajax event="UpdateLogs" render="logTable"/>
             </f:websocket>
 
-            <p:dataTable var="log" value="#{hecateManager.logs}" paginator="true" rows="10"
+            <p:dataTable var="log" value="#{hecateManager.logs}" paginator="true" rows="10" rowKey="#{log.id}"
                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
                          rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{hecateManager.selectedLog}"
                          id="logTable">
-                <p:ajax event="rowSelect" listener="#{dtLazyView.onRowSelect}" update=":form:carDetail"
+                <p:ajax event="rowSelect" update=":form:carDetail"
                         oncomplete="PF('carDialog').show()"/>
                 <p:column headerText="Id" sortBy="#{log.id}" filterBy="#{log.id}">
                     <h:outputText value="#{log.id}"/>
@@ -35,28 +33,46 @@
                 </p:column>
             </p:dataTable>
 
-            <p:dialog header="Car Detail" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade"
+            <p:dialog header="Log Detail" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade"
                       resizable="false">
                 <p:outputPanel id="carDetail" style="text-align:center;">
-                    <p:panelGrid columns="2" rendered="#{not empty dtLazyView.selectedCar}" columnClasses="label,value">
+                    <p:panelGrid columns="2" rendered="#{not empty hecateManager.selectedLog}" columnClasses="label,value">
                         <f:facet name="header">
-                            <p:graphicImage name="demo/images/car/#{dtLazyView.selectedCar.brand}-big.gif"/>
+                            <h1>#{hecateManager.selectedLog.listenerId}</h1>
                         </f:facet>
 
-                        <h:outputText value="Id:"/>
-                        <h:outputText value="#{dtLazyView.selectedCar.id}"/>
+                        <h:outputText value="Time"/>
+                        <h:outputText value="#{hecateManager.selectedLog.time}"/>
 
-                        <h:outputText value="Year"/>
-                        <h:outputText value="#{dtLazyView.selectedCar.year}"/>
+                        <f:facet name="header">
+                            <h1>Request</h1>
+                        </f:facet>
 
-                        <h:outputText value="Color:"/>
-                        <h:outputText value="#{dtLazyView.selectedCar.color}"
-                                      style="color:#{dtLazyView.selectedCar.color}"/>
+                        <h:outputText value="Path"/>
+                        <h:outputText value="#{hecateManager.selectedLog.request.path}"/>
 
-                        <h:outputText value="Price:"/>
-                        <h:outputText value="#{dtLazyView.selectedCar.price}">
-                            <f:convertNumber type="currency" currencySymbol="$"/>
-                        </h:outputText>
+                        <h:outputText value="Http method"/>
+                        <h:outputText value="#{hecateManager.selectedLog.request.httpMethod}"/>
+
+                        <ui:repeat var="innerHeader" value="#{hecateManager.convertUiFriendlyHeaders(hecateManager.selectedLog.request.headers)}">
+                            <h:outputText value="#{innerHeader.key}:"/>
+                            <h:outputText value="#{innerHeader.value};"/>
+                        </ui:repeat>
+
+                        <f:facet name="header">
+                            <h1>Response</h1>
+                        </f:facet>
+
+                        <h:outputText value="Path"/>
+                        <h:outputText value="#{hecateManager.selectedLog.response.body}"/>
+
+                        <h:outputText value="Http method"/>
+                        <h:outputText value="#{hecateManager.selectedLog.response.statusCode}"/>
+
+                        <ui:repeat var="innerHeader" value="#{hecateManager.convertUiFriendlyHeaders(hecateManager.selectedLog.response.headers)}">
+                            <h:outputText value="#{innerHeader.key}:"/>
+                            <h:outputText value="#{innerHeader.value};"/>
+                        </ui:repeat>
                     </p:panelGrid>
                 </p:outputPanel>
             </p:dialog>

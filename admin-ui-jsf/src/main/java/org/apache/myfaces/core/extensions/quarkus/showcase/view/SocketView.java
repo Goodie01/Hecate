@@ -61,5 +61,4 @@ public class SocketView implements Serializable {
         LOG.log(Level.INFO, "send push message from input box::" + this.message);
         this.sendPushMessage(this.message);
     }
-    
 }

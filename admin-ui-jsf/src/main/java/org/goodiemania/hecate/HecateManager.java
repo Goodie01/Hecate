@@ -2,6 +2,8 @@ package org.goodiemania.hecate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.push.Push;
@@ -10,18 +12,17 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.goodiemania.hecate.api.HecateApi;
 import org.goodiemania.hecate.logs.Log;
-import org.primefaces.model.LazyDataModel;
 
 @Named
 @ApplicationScoped
 public class HecateManager {
     private HecateApi hecateApi;
-    private List<Log> logs;
+    private List<Log> logs = new ArrayList<>();
     private Log selectedLog;
 
     @Inject
     @Push
-    private PushContext push;
+    private PushContext pushChannel;
 
     @PostConstruct
     public void init() {
@@ -31,10 +32,8 @@ public class HecateManager {
     }
 
     public void updateLogs() {
-        System.out.println("Making for call logs");
         logs = new ArrayList<>(hecateApi.getAllLogs());
-        System.out.println("Found: " + logs.size());
-        //push.send("UpdateLogs");
+        pushChannel.send("UpdateLogs");
     }
 
     public List<Log> getLogs() {
@@ -47,5 +46,30 @@ public class HecateManager {
 
     public void setSelectedLog(final Log selectedLog) {
         this.selectedLog = selectedLog;
+    }
+
+    public List<HeaderValues> convertUiFriendlyHeaders(final Map<String, String> headers) {
+        return headers.entrySet().stream()
+                .map(stringStringEntry -> new HeaderValues(stringStringEntry.getKey(), stringStringEntry.getValue()))
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private static class HeaderValues {
+        private final String key;
+        private final String value;
+
+        public HeaderValues(final String key, final String value) {
+
+            this.key = key;
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public String getKey() {
+            return key;
+        }
     }
 }
