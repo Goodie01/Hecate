@@ -67,7 +67,11 @@
             <version>${quarkus.version}</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-scheduler</artifactId>
+            <version>${quarkus.version}</version>
+        </dependency>
         <dependency>
             <groupId>net.sourceforge.htmlunit</groupId>
             <artifactId>htmlunit</artifactId>

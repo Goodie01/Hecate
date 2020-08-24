@@ -28,11 +28,11 @@
 
                 <br />
 
-                <ui:repeat var="car" value="#{methodHandleELResolverBean.cars}">
-                    <h:outputText value="#{car.id}" />
-                    <h:outputText value="#{car.year}" />
-                    <h:outputText value="#{car.brand}" />
-                    <h:outputText value="#{car.color}" />
+                <ui:repeat var="log" value="#{methodHandleELResolverBean.cars}">
+                    <h:outputText value="#{log.id}" />
+                    <h:outputText value="#{log.year}" />
+                    <h:outputText value="#{log.brand}" />
+                    <h:outputText value="#{log.color}" />
                 </ui:repeat>
         </h:body>
 

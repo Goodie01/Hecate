@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:view contentType="text/html">
+    <h:head>
+    </h:head>
+
+    <h:body>
+        <p:growl>
+            <p:autoUpdate/>
+        </p:growl>
+
+        <h:form id="form">
+            <f:websocket channel="push">
+                <f:ajax event="UpdateLogs" render=":logTable"/>
+            </f:websocket>
+
+            <p:dataTable var="log" value="#{hecateManager.logs}" paginator="true" rows="10"
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                         rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{hecateManager.selectedLog}"
+                         id="logTable">
+                <p:ajax event="rowSelect" listener="#{dtLazyView.onRowSelect}" update=":form:carDetail"
+                        oncomplete="PF('carDialog').show()"/>
+                <p:column headerText="Id" sortBy="#{log.id}" filterBy="#{log.id}">
+                    <h:outputText value="#{log.id}"/>
+                </p:column>
+                <p:column headerText="Listener ID" sortBy="#{log.listenerId}" filterBy="#{log.listenerId}">
+                    <h:outputText value="#{log.listenerId}"/>
+                </p:column>
+                <p:column headerText="Request time" sortBy="#{log.time}" filterBy="#{log.time}">
+                    <h:outputText value="#{log.time}"/>
+                </p:column>
+            </p:dataTable>
+
+            <p:dialog header="Car Detail" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade"
+                      resizable="false">
+                <p:outputPanel id="carDetail" style="text-align:center;">
+                    <p:panelGrid columns="2" rendered="#{not empty dtLazyView.selectedCar}" columnClasses="label,value">
+                        <f:facet name="header">
+                            <p:graphicImage name="demo/images/car/#{dtLazyView.selectedCar.brand}-big.gif"/>
+                        </f:facet>
+
+                        <h:outputText value="Id:"/>
+                        <h:outputText value="#{dtLazyView.selectedCar.id}"/>
+
+                        <h:outputText value="Year"/>
+                        <h:outputText value="#{dtLazyView.selectedCar.year}"/>
+
+                        <h:outputText value="Color:"/>
+                        <h:outputText value="#{dtLazyView.selectedCar.color}"
+                                      style="color:#{dtLazyView.selectedCar.color}"/>
+
+                        <h:outputText value="Price:"/>
+                        <h:outputText value="#{dtLazyView.selectedCar.price}">
+                            <f:convertNumber type="currency" currencySymbol="$"/>
+                        </h:outputText>
+                    </p:panelGrid>
+                </p:outputPanel>
+            </p:dialog>
+        </h:form>
+    </h:body>
+
+</f:view>
+</html>
+
