@@ -26,11 +26,7 @@ jobs:
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
-      - name: Publish API objects JAR
-        run: mvn -B release:prepare release:perform -f api-objects/pom.xml
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Publish API JAR
-        run: mvn -B release:prepare release:perform -f api/pom.xml
+      - name: Publish jar files
+        run: mvn -B release:prepare release:perform
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
