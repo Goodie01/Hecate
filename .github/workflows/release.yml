@@ -31,6 +31,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   release-api:
+    needs: release-api-objects
     runs-on: ubuntu-latest
     steps:
       - name: Checkout project
