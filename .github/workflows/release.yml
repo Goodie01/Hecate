@@ -26,32 +26,11 @@ jobs:
         run: |
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
-      - name: Publish JAR
+      - name: Publish API objects JAR
         run: mvn -B release:prepare release:perform -f api-objects/pom.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  release-api:
-    needs: release-api-objects
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout project
-        uses: actions/checkout@v2
-      - name: Setup Java JDK
-        uses: actions/setup-java@v1.4.2
-        with:
-          java-version: 11
-          server-id: github
-      - name: Cache local Maven repository
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-maven-
-      - name: Configure Git user
-        run: |
-          git config user.email "actions@github.com"
-          git config user.name "GitHub Actions"
-      - name: Publish JAR
+      - name: Publish API JAR
         run: mvn -B release:prepare release:perform -f api/pom.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
