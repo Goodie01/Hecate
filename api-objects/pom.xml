@@ -4,7 +4,7 @@
 
     <groupId>org.goodiemania.hecate</groupId>
     <artifactId>api-objects</artifactId>
-    <version>0.1.2</version>
+    <version>0.1.3-SNAPSHOT</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -14,7 +14,7 @@
 
     <scm>
         <developerConnection>scm:git:https://github.com/Goodie01/Hecate.git</developerConnection>
-        <tag>api-objects-0.1.2</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
