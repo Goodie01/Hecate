@@ -38,7 +38,7 @@ jobs:
           restore-keys: ${{ runner.os }}-maven-
       - name: Build Library with Maven
         run: mvn -B package -f api/pom.xml
-  build-server
+  build-server:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout project
