@@ -14,6 +14,20 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
+    <scm>
+        <developerConnection>scm:git:https://github.com/Goodie01/Hecate.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub</name>
+            <url>https://maven.pkg.github.com/Goodie01/Hecate</url>
+        </repository>
+    </distributionManagement>
+
+
     <dependencies>
         <dependency>
             <groupId>org.goodiemania.hecate</groupId>
