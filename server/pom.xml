@@ -67,4 +67,12 @@
     <build>
         <finalName>${project.artifactId}</finalName>
     </build>
+
+    <repositories>
+        <repository>
+            <id>github</id>
+            <name>GitHub Hecate Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/Goodie01/Hecate</url>
+        </repository>
+    </repositories>
 </project>
