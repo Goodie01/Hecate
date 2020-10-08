@@ -1,13 +1,16 @@
-package org.goodiemania.hecate.managers.listeners;
+package org.goodiemania.hecate.managers;
 
 import io.javalin.Javalin;
 import io.javalin.http.HandlerType;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Map;
 import org.goodiemania.hecate.MetaContext;
 import org.goodiemania.hecate.confuration.ListenerConfiguration;
 import org.goodiemania.hecate.confuration.Rule;
 import org.goodiemania.hecate.logs.Log;
+import org.goodiemania.hecate.managers.listeners.RequestContext;
 
 public class ListenerManager {
     private ListenerManager() {
@@ -28,7 +31,10 @@ public class ListenerManager {
                     final RequestContext requestContext = RequestContext.of(path, httpMethod, body, headers);
                     long startTime = System.currentTimeMillis();
 
-                    for (Rule rule : listenerConfiguration.getRules().values()) {
+                    final ArrayList<Rule> rules = new ArrayList<>(listenerConfiguration.getRules().values());
+                    rules.sort(Comparator.comparing(Rule::getOrder));
+
+                    for (Rule rule : rules) {
                         if (!rule.process(requestContext)) {
                             break;
                         }

@@ -1,4 +1,4 @@
-package org.goodiemania.hecate.managers.admin;
+package org.goodiemania.hecate.managers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.javalin.Javalin;
