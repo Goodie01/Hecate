@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class ConfigurationFile {
+public class ConfigurationFile implements ConfigurationProvider {
     private String propsLocation;
     private final ObjectMapper objectMapper;
 
@@ -14,6 +14,7 @@ public class ConfigurationFile {
         this.objectMapper = objectMapper;
     }
 
+    @Override
     public Configuration get() {
         try (final FileReader fileReader = new FileReader(this.propsLocation)) {
             return objectMapper.readValue(fileReader, Configuration.class);
@@ -23,6 +24,7 @@ public class ConfigurationFile {
         }
     }
 
+    @Override
     public void update(final Configuration configuration) {
         try (final FileWriter fileWriter = new FileWriter(this.propsLocation)) {
             objectMapper.writeValue(fileWriter, configuration);

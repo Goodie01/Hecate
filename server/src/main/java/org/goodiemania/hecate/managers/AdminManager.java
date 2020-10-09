@@ -28,7 +28,7 @@ public class AdminManager {
     }
 
     public void start() {
-        final Javalin javalin = metaContext.getJavalinInstance(configuration.getAdminPort());
+        final Javalin javalin = metaContext.getInstanceHolder().get(configuration.getAdminPort());
 
         javalin.get("configuration/", this::getAllListeners);
 

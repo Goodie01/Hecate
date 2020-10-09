@@ -5,60 +5,70 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import io.javalin.Javalin;
+import io.javalin.http.HandlerType;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.goodiemania.hecate.configuration.Configuration;
 import org.goodiemania.hecate.configuration.ConfigurationFile;
+import org.goodiemania.hecate.configuration.ConfigurationProvider;
+import org.goodiemania.hecate.confuration.ListenerConfiguration;
 import org.goodiemania.hecate.logs.Log;
 import org.goodiemania.hecate.managers.AdminManager;
-import org.goodiemania.hecate.managers.ListenerManager;
+import org.goodiemania.hecate.managers.ListenerHandler;
 
 public class MetaContext {
     private final ObjectMapper objectMapper;
     private final Configuration configuration;
     private final AdminManager adminManager;
-    private final Map<String, List<Log>> logs = new HashMap<>();
-    private final ConfigurationFile configurationFile;
+    private final JavalinInstanceHolder instanceHolder;
 
-    private Map<Integer, Javalin> javalinMap = new HashMap<>();
+    private final Map<String, List<Log>> logs;
 
-    public MetaContext(final String propsLocation) {
-        this.objectMapper = JsonMapper.builder()
-                .addModule(new JavaTimeModule())
-                .configure(SerializationFeature.WRITE_DATE_TIMESTAMPS_AS_NANOSECONDS, false)
-                .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
-                .build();
-        configurationFile = new ConfigurationFile(propsLocation, objectMapper);
-        configuration = configurationFile.get();
+    private final ConfigurationProvider configurationProvider;
 
-        adminManager = new AdminManager(this, configuration);
+    public MetaContext(final ObjectMapper objectMapper, final ConfigurationProvider configurationProvider) {
+        this.objectMapper = objectMapper;
+        this.configurationProvider = configurationProvider;
+
+        this.logs = new HashMap<>();
+        this.instanceHolder = new JavalinInstanceHolder();
+
+        this.configuration = this.configurationProvider.get();
+        this.adminManager = new AdminManager(this, this.configuration);
 
         System.out.println(""
-                + "   ▄█    █▄       ▄████████  ▄████████    ▄████████     ███        ▄████████ \n"
-                + "  ███    ███     ███    ███ ███    ███   ███    ███ ▀█████████▄   ███    ███ \n"
-                + "  ███    ███     ███    █▀  ███    █▀    ███    ███    ▀███▀▀██   ███    █▀  \n"
-                + " ▄███▄▄▄▄███▄▄  ▄███▄▄▄     ███          ███    ███     ███   ▀  ▄███▄▄▄     \n"
-                + "▀▀███▀▀▀▀███▀  ▀▀███▀▀▀     ███        ▀███████████     ███     ▀▀███▀▀▀     \n"
-                + "  ███    ███     ███    █▄  ███    █▄    ███    ███     ███       ███    █▄  \n"
-                + "  ███    ███     ███    ███ ███    ███   ███    ███     ███       ███    ███ \n"
-                + "  ███    █▀      ██████████ ████████▀    ███    █▀     ▄████▀     ██████████ \n"
-                + "                                                                             \n");
+                + "  _    _                _       \n"
+                + " | |  | |              | |      \n"
+                + " | |__| | ___  ___ __ _| |_ ___ \n"
+                + " |  __  |/ _ \\/ __/ _` | __/ _ \\\n"
+                + " | |  | |  __/ (_| (_| | ||  __/\n"
+                + " |_|  |_|\\___|\\___\\__,_|\\__\\___|\n"
+                + "                                \n"
+                + "                                \n"
+                + "\n");
     }
 
     public synchronized void reStart() {
-        javalinMap.values().forEach(Javalin::stop);
-        javalinMap = new HashMap<>();
+        instanceHolder.stopAll();
 
         adminManager.start();
 
         configuration.getListeners().values()
-                .forEach(listenerConfiguration -> ListenerManager.setUp(this, listenerConfiguration));
+                .forEach(this::addHandler);
+    }
+
+    private void addHandler(final ListenerConfiguration listenerConfiguration) {
+        instanceHolder.get(listenerConfiguration.getPort())
+                .addHandler(
+                        HandlerType.valueOf(listenerConfiguration.getHttpMethod()),
+                        listenerConfiguration.getContext(),
+                        new ListenerHandler(listenerConfiguration, this));
     }
 
     public void configUpdated() {
-        configurationFile.update(configuration);
+        configurationProvider.update(configuration);
         reStart();
     }
 
@@ -72,20 +82,11 @@ public class MetaContext {
         return logs;
     }
 
-    public synchronized Javalin getJavalinInstance(final int port) {
-        Javalin javalin = javalinMap.get(port);
-
-        if (javalin == null) {
-            javalin = Javalin.create();
-            javalin.config.showJavalinBanner = false;
-            javalin.start(port);
-            javalinMap.put(port, javalin);
-        }
-
-        return javalin;
-    }
-
     public ObjectMapper getObjectMapper() {
         return objectMapper;
+    }
+
+    public JavalinInstanceHolder getInstanceHolder() {
+        return instanceHolder;
     }
 }
