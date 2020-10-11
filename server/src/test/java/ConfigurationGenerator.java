@@ -1,5 +1,3 @@
-package org.goodiemania.hecate;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Map;
@@ -12,7 +10,7 @@ import org.goodiemania.hecate.confuration.when.And;
 import org.goodiemania.hecate.confuration.when.BodyContains;
 import org.goodiemania.hecate.confuration.when.PathContains;
 
-public class MainConfigurationGenerator {
+public class ConfigurationGenerator {
     public static void main(String[] args) {
         final ObjectMapper objectMapper = new ObjectMapper();
 
