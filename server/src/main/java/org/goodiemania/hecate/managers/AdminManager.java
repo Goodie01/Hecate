@@ -3,12 +3,8 @@ package org.goodiemania.hecate.managers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 import org.goodiemania.hecate.MetaContext;
 import org.goodiemania.hecate.configuration.Configuration;
@@ -18,7 +14,6 @@ import org.goodiemania.hecate.logs.Log;
 
 public class AdminManager {
     private static final String CORS_HEADER_NAME = "Access-Control-Allow-Origin";
-
     private final MetaContext metaContext;
     private final Configuration configuration;
 
@@ -50,7 +45,7 @@ public class AdminManager {
     }
 
     private void getLogs(final Context ctx) {
-        List<Log> logsList = metaContext.getLogs().getOrDefault(ctx.pathParam("listenerName"), Collections.emptyList());
+        List<Log> logsList = metaContext.getLogsHolder().getForSpecificListener(ctx.pathParam("listenerName"));
 
         try {
             ctx.result(metaContext.getObjectMapper().writeValueAsString(logsList));
@@ -61,11 +56,7 @@ public class AdminManager {
     }
 
     private void getAllLogs(final Context ctx) throws JsonProcessingException {
-        List<Log> logsList = metaContext.getLogs().values()
-                .stream()
-                .flatMap(Collection::stream)
-                .sorted(Comparator.comparing(Log::getTime))
-                .collect(Collectors.toList());
+        List<Log> logsList = metaContext.getLogsHolder().getAll();
 
         try {
             ctx.result(metaContext.getObjectMapper().writeValueAsString(logsList));
@@ -76,7 +67,7 @@ public class AdminManager {
     }
 
     private void deleteLogs(final Context ctx) {
-        metaContext.getLogs().put(ctx.pathParam("listenerName"), Collections.emptyList());
+        metaContext.getLogsHolder().getForSpecificListener(ctx.pathParam("listenerName"));
         ctx.result("Cleared logs");
         ctx.header(CORS_HEADER_NAME, "*");
     }

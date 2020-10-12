@@ -32,7 +32,7 @@ public class ListenerHandler implements Handler {
 
         processResponse(ctx, requestContext);
 
-        metaContext.addLog(listenerConfiguration.getId(), Log.of(listenerConfiguration.getId(), requestContext, timeTaken));
+        metaContext.getLogsHolder().addLog(listenerConfiguration.getId(), Log.of(listenerConfiguration.getId(), requestContext, timeTaken));
     }
 
     private static long timeEvent(final Runnable runnable) {
