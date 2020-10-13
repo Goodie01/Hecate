@@ -47,7 +47,7 @@ public class ListenerHandler implements Handler {
     private void processRules(final RequestContext requestContext) {
         final ArrayList<Rule> sortRules = getSortRules();
 
-        if(sortRules.isEmpty()) {
+        if (sortRules.isEmpty()) {
             createEmptyResponse(requestContext);
             return;
         }
