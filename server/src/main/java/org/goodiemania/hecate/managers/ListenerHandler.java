@@ -10,6 +10,7 @@ import org.goodiemania.hecate.confuration.ListenerConfiguration;
 import org.goodiemania.hecate.confuration.Rule;
 import org.goodiemania.hecate.logs.Log;
 import org.goodiemania.hecate.managers.listeners.RequestContext;
+import org.goodiemania.hecate.managers.listeners.ResponseInfo;
 import org.jetbrains.annotations.NotNull;
 
 public class ListenerHandler implements Handler {
@@ -44,11 +45,24 @@ public class ListenerHandler implements Handler {
     }
 
     private void processRules(final RequestContext requestContext) {
-        for (Rule rule : getSortRules()) {
+        final ArrayList<Rule> sortRules = getSortRules();
+
+        if(sortRules.isEmpty()) {
+            createEmptyResponse(requestContext);
+            return;
+        }
+
+        for (Rule rule : sortRules) {
             if (!rule.process(requestContext)) {
                 break;
             }
         }
+    }
+
+    private void createEmptyResponse(final RequestContext requestContext) {
+        final ResponseInfo response = requestContext.getResponse();
+        response.setBody("{\"Message\":\"No rules found for listener\"}");
+        response.setStatusCode(418);
     }
 
     @NotNull
