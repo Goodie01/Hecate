@@ -12,7 +12,7 @@ public interface HecateApi {
     void writeListener(final ListenerConfiguration configuration);
     void deleteListener(final String listenerId);
 
-    void writeRules(final String listenerId, final Rule rule);
+    void writeRule(final String listenerId, final Rule rule);
     void deleteRule(final String listenerId, final String ruleId);
 
     List<Log> getAllLogs();

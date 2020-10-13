@@ -76,7 +76,7 @@ public class HecateApiImpl implements HecateApi {
     }
 
     @Override
-    public void writeRules(final String configurationId, final Rule rule) {
+    public void writeRule(final String configurationId, final Rule rule) {
         String ruleString = null;
         try {
             ruleString = mapper.writeValueAsString(rule);
