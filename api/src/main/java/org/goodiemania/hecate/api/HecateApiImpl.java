@@ -1,6 +1,5 @@
 package org.goodiemania.hecate.api;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
@@ -29,11 +28,12 @@ public class HecateApiImpl implements HecateApi {
     public List<ListenerConfiguration> getAllListeners() {
         HttpRequest.Builder httpResponse = HttpRequest.newBuilder()
                 .uri(URI.create(String.format("%s/configuration/", baseUri)))
-                .method("get", HttpRequest.BodyPublishers.noBody());
+                .method("GET", HttpRequest.BodyPublishers.noBody());
 
         try {
             String body = httpClient.send(httpResponse.build(), HttpResponse.BodyHandlers.ofString()).body();
-            return mapper.readValue(body, new TypeReference<>() {});
+            return mapper.readValue(body, new TypeReference<>() {
+            });
         } catch (IOException | InterruptedException e) {
             throw new IllegalStateException(e);
         }
@@ -43,7 +43,7 @@ public class HecateApiImpl implements HecateApi {
     public Optional<ListenerConfiguration> getListener(final String listenerId) {
         HttpRequest.Builder httpResponse = HttpRequest.newBuilder()
                 .uri(URI.create(String.format("%s/configuration/%s", baseUri, listenerId)))
-                .method("get", HttpRequest.BodyPublishers.noBody());
+                .method("GET", HttpRequest.BodyPublishers.noBody());
 
         try {
             String body = httpClient.send(httpResponse.build(), HttpResponse.BodyHandlers.ofString()).body();
@@ -56,55 +56,75 @@ public class HecateApiImpl implements HecateApi {
 
     @Override
     public void writeListener(final ListenerConfiguration configuration) {
-        String configurationString = null;
         try {
-            configurationString = mapper.writeValueAsString(configuration);
-        } catch (JsonProcessingException e) {
+            String configurationString = mapper.writeValueAsString(configuration);
+
+            final HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(String.format("%s/configuration/%s", baseUri, configuration.getId())))
+                    .method("PUT", HttpRequest.BodyPublishers.ofString(configurationString))
+                    .build();
+
+            httpClient.send(request, HttpResponse.BodyHandlers.discarding());
+        } catch (IOException | InterruptedException e) {
             throw new IllegalStateException(e);
         }
-
-        HttpRequest.newBuilder()
-                .uri(URI.create(String.format("%s/configuration/%s", baseUri, configuration.getId())))
-                .method("put", HttpRequest.BodyPublishers.ofString(configurationString));
     }
 
     @Override
     public void deleteListener(final String listenerId) {
-        HttpRequest.newBuilder()
-                .uri(URI.create(String.format("%s/configuration/%s", baseUri, listenerId)))
-                .method("delete", HttpRequest.BodyPublishers.noBody());
+        try {
+            final HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(String.format("%s/configuration/%s", baseUri, listenerId)))
+                    .method("DELETE", HttpRequest.BodyPublishers.noBody())
+                    .build();
+
+            httpClient.send(request, HttpResponse.BodyHandlers.discarding());
+        } catch (IOException | InterruptedException e) {
+            throw new IllegalStateException(e);
+        }
     }
 
     @Override
     public void writeRule(final String configurationId, final Rule rule) {
-        String ruleString = null;
         try {
-            ruleString = mapper.writeValueAsString(rule);
-        } catch (JsonProcessingException e) {
+            String ruleString = mapper.writeValueAsString(rule);
+
+            final HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(String.format("%s/configuration/%s/rules/%s", baseUri, configurationId, rule.getId())))
+                    .method("PUT", HttpRequest.BodyPublishers.ofString(ruleString))
+                    .build();
+
+            httpClient.send(request, HttpResponse.BodyHandlers.discarding());
+        } catch (IOException | InterruptedException e) {
             throw new IllegalStateException(e);
         }
-
-        HttpRequest.newBuilder()
-                .uri(URI.create(String.format("%s/configuration/%s/rules/%s", baseUri, configurationId, rule.getId())))
-                .method("put", HttpRequest.BodyPublishers.ofString(ruleString));
     }
 
     @Override
     public void deleteRule(final String configurationId, final String ruleId) {
-        HttpRequest.newBuilder()
-                .uri(URI.create(String.format("%s/configuration/%s/rules/%s", baseUri, configurationId, ruleId)))
-                .method("delete", HttpRequest.BodyPublishers.noBody());
+        try {
+            final HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(String.format("%s/configuration/%s/rules/%s", baseUri, configurationId, ruleId)))
+                    .method("DELETE", HttpRequest.BodyPublishers.noBody())
+                    .build();
+
+            httpClient.send(request, HttpResponse.BodyHandlers.discarding());
+        } catch (IOException | InterruptedException e) {
+            throw new IllegalStateException(e);
+        }
     }
 
     @Override
     public List<Log> getAllLogs() {
-        HttpRequest.Builder httpResponse = HttpRequest.newBuilder()
+        final HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(String.format("%s/logs/", baseUri)))
-                .method("get", HttpRequest.BodyPublishers.noBody());
+                .method("GET", HttpRequest.BodyPublishers.noBody())
+                .build();
 
         try {
-            String body = httpClient.send(httpResponse.build(), HttpResponse.BodyHandlers.ofString()).body();
-            return mapper.readValue(body, new TypeReference<>() {});
+            String body = httpClient.send(request, HttpResponse.BodyHandlers.ofString()).body();
+            return mapper.readValue(body, new TypeReference<>() {
+            });
         } catch (IOException | InterruptedException e) {
             throw new IllegalStateException(e);
         }
@@ -112,13 +132,15 @@ public class HecateApiImpl implements HecateApi {
 
     @Override
     public List<Log> getAllLogsForListener(final String listenerId) {
-        HttpRequest.Builder httpResponse = HttpRequest.newBuilder()
+        final HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(String.format("%s/logs/%s", baseUri, listenerId)))
-                .method("get", HttpRequest.BodyPublishers.noBody());
+                .method("GET", HttpRequest.BodyPublishers.noBody())
+                .build();
 
         try {
-            String body = httpClient.send(httpResponse.build(), HttpResponse.BodyHandlers.ofString()).body();
-            return mapper.readValue(body, new TypeReference<>() {});
+            String body = httpClient.send(request, HttpResponse.BodyHandlers.ofString()).body();
+            return mapper.readValue(body, new TypeReference<>() {
+            });
         } catch (IOException | InterruptedException e) {
             throw new IllegalStateException(e);
         }
@@ -126,8 +148,15 @@ public class HecateApiImpl implements HecateApi {
 
     @Override
     public void deleteLogsForListener(final String listenerId) {
-        HttpRequest.newBuilder()
-                .uri(URI.create(String.format("%s/logs/%s", baseUri, listenerId)))
-                .method("delete", HttpRequest.BodyPublishers.noBody());
+        try {
+            final HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(String.format("%s/logs/%s", baseUri, listenerId)))
+                    .method("DELETE", HttpRequest.BodyPublishers.noBody())
+                    .build();
+
+            httpClient.send(request, HttpResponse.BodyHandlers.discarding());
+        } catch (IOException | InterruptedException e) {
+            throw new IllegalStateException(e);
+        }
     }
 }

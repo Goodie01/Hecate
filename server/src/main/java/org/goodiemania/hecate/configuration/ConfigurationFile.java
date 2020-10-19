@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class ConfigurationFile implements ConfigurationProvider {
-    private String propsLocation;
+    private final String propsLocation;
     private final ObjectMapper objectMapper;
 
     public ConfigurationFile(final String propsLocation, final ObjectMapper objectMapper) {

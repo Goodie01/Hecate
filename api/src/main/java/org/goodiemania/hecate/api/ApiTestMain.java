@@ -21,5 +21,17 @@ public class ApiTestMain {
 
         hecateApi.getAllLogs()
                 .forEach(log -> System.out.println(log.getId() + ":" + log.getResponse().getBody()));
+
+        final ListenerConfiguration listenerConfiguration = new ListenerConfiguration();
+        listenerConfiguration.setId("howdy");
+        listenerConfiguration.setContext("there");
+        listenerConfiguration.setHttpMethod("GET");
+        listenerConfiguration.setPort(80080);
+        hecateApi.writeListener(listenerConfiguration);
+
+        hecateApi.getListener("howdy")
+                .map(ListenerConfiguration::getId)
+                .ifPresentOrElse(System.out::println,
+                        () -> System.out.println("Fuck this"));
     }
 }

@@ -88,20 +88,22 @@ public class AdminManager {
 
         configuration.getListeners().put(newConfiguration.getId(), newConfiguration);
         metaContext.configUpdated();
-        ctx.result("Added listener");
+        ctx.status(201);
         ctx.header("Access-Control-Allow-Origin", "*");
     }
 
     private void getListener(final Context ctx) {
-        Optional.ofNullable(configuration.getListeners().get(ctx.pathParam("listenerName")))
-                .ifPresent(config -> {
-                    try {
-                        ctx.result(metaContext.getObjectMapper().writeValueAsString(config));
-                        ctx.header("Access-Control-Allow-Origin", "*");
-                    } catch (JsonProcessingException e) {
-                        throw new IllegalStateException(e);
-                    }
-                });
+        final String listenerNameFormPathParam = ctx.pathParam("listenerName");
+
+        final Optional<ListenerConfiguration> configuration =
+                Optional.ofNullable(this.configuration.getListeners().get(listenerNameFormPathParam));
+
+        try {
+            ctx.result(metaContext.getObjectMapper().writeValueAsString(configuration));
+            ctx.header("Access-Control-Allow-Origin", "*");
+        } catch (JsonProcessingException e) {
+            throw new IllegalStateException(e);
+        }
     }
 
     private void deleteRule(final Context ctx) {
