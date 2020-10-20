@@ -88,8 +88,8 @@ public class AdminManager {
             throw new IllegalStateException("listener name does not equal given listener name");
         }
 
-        configuration.getListeners().values().forEach(listenerConfiguration ->{
-            if(differentListenerWithSamePortAndContextPath(newConfiguration, listenerConfiguration)) {
+        configuration.getListeners().values().forEach(listenerConfiguration -> {
+            if (differentListenerWithSamePortAndContextPath(newConfiguration, listenerConfiguration)) {
                 throw new IllegalStateException("Listener port and context are already in use");
             }
         });
@@ -100,7 +100,8 @@ public class AdminManager {
         ctx.header("Access-Control-Allow-Origin", "*");
     }
 
-    private boolean differentListenerWithSamePortAndContextPath(final ListenerConfiguration newConfiguration, final ListenerConfiguration listenerConfiguration) {
+    private boolean differentListenerWithSamePortAndContextPath(final ListenerConfiguration newConfiguration,
+                                                                final ListenerConfiguration listenerConfiguration) {
         return listenerConfiguration.getPort() == newConfiguration.getPort()
                 && StringUtils.equals(listenerConfiguration.getContext(), newConfiguration.getContext())
                 && !StringUtils.equals(listenerConfiguration.getId(), newConfiguration.getId());
