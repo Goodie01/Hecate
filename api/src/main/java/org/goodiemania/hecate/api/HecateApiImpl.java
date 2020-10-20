@@ -25,13 +25,29 @@ public class HecateApiImpl implements HecateApi {
     }
 
     @Override
-    public List<ListenerConfiguration> getAllListeners() {
-        HttpRequest.Builder httpResponse = HttpRequest.newBuilder()
-                .uri(URI.create(String.format("%s/configuration/", baseUri)))
-                .method("GET", HttpRequest.BodyPublishers.noBody());
+    public String checkHealthCheck() {
+        HttpRequest httpRequest = HttpRequest.newBuilder()
+                .uri(URI.create(String.format("%s/health/", baseUri)))
+                .method("GET", HttpRequest.BodyPublishers.noBody())
+                .build();
 
         try {
-            String body = httpClient.send(httpResponse.build(), HttpResponse.BodyHandlers.ofString()).body();
+            String body = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString()).body();
+            return mapper.readValue(body, String.class);
+        } catch (IOException | InterruptedException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+    @Override
+    public List<ListenerConfiguration> getAllListeners() {
+        HttpRequest httpRequest = HttpRequest.newBuilder()
+                .uri(URI.create(String.format("%s/configuration/", baseUri)))
+                .method("GET", HttpRequest.BodyPublishers.noBody())
+                .build();
+
+        try {
+            String body = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString()).body();
             return mapper.readValue(body, new TypeReference<>() {
             });
         } catch (IOException | InterruptedException e) {
@@ -41,12 +57,13 @@ public class HecateApiImpl implements HecateApi {
 
     @Override
     public Optional<ListenerConfiguration> getListener(final String listenerId) {
-        HttpRequest.Builder httpResponse = HttpRequest.newBuilder()
+        final HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(URI.create(String.format("%s/configuration/%s", baseUri, listenerId)))
-                .method("GET", HttpRequest.BodyPublishers.noBody());
+                .method("GET", HttpRequest.BodyPublishers.noBody())
+                .build();
 
         try {
-            String body = httpClient.send(httpResponse.build(), HttpResponse.BodyHandlers.ofString()).body();
+            String body = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString()).body();
             ListenerConfiguration listenerConfiguration = mapper.readValue(body, ListenerConfiguration.class);
             return Optional.ofNullable(listenerConfiguration);
         } catch (IOException | InterruptedException e) {

@@ -7,6 +7,7 @@ import org.goodiemania.hecate.confuration.Rule;
 import org.goodiemania.hecate.logs.Log;
 
 public interface HecateApi {
+    String checkHealthCheck();
     List<ListenerConfiguration> getAllListeners();
     Optional<ListenerConfiguration> getListener(final String listenerId);
     void writeListener(final ListenerConfiguration configuration);

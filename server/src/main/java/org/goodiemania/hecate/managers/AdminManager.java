@@ -25,6 +25,8 @@ public class AdminManager {
     public void start() {
         final Javalin javalin = metaContext.getInstanceHolder().get(configuration.getAdminPort());
 
+        javalin.get("health", ctx -> ctx.json("OK"));
+
         javalin.get("configuration/", this::getAllListeners);
 
         javalin.get("configuration/:listenerName", this::getListener);
@@ -86,10 +88,22 @@ public class AdminManager {
             throw new IllegalStateException("listener name does not equal given listener name");
         }
 
+        configuration.getListeners().values().forEach(listenerConfiguration ->{
+            if(differentListenerWithSamePortAndContextPath(newConfiguration, listenerConfiguration)) {
+                throw new IllegalStateException("Listener port and context are already in use");
+            }
+        });
+
         configuration.getListeners().put(newConfiguration.getId(), newConfiguration);
         metaContext.configUpdated();
         ctx.status(201);
         ctx.header("Access-Control-Allow-Origin", "*");
+    }
+
+    private boolean differentListenerWithSamePortAndContextPath(final ListenerConfiguration newConfiguration, final ListenerConfiguration listenerConfiguration) {
+        return listenerConfiguration.getPort() == newConfiguration.getPort()
+                && StringUtils.equals(listenerConfiguration.getContext(), newConfiguration.getContext())
+                && !StringUtils.equals(listenerConfiguration.getId(), newConfiguration.getId());
     }
 
     private void getListener(final Context ctx) {
