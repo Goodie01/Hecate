@@ -62,7 +62,7 @@ public class AdminManager {
 
         try {
             ctx.result(metaContext.getObjectMapper().writeValueAsString(logsList));
-            ctx.header("Access-Control-Allow-Origin", "*");
+            ctx.header(CORS_HEADER_NAME, "*");
         } catch (JsonProcessingException e) {
             throw new IllegalStateException(e);
         }
@@ -76,9 +76,11 @@ public class AdminManager {
 
     private void deleteListener(final Context ctx) {
         configuration.getListeners().remove(ctx.pathParam("listenerName"));
+
+        ctx.status(201);
+        ctx.header(CORS_HEADER_NAME, "*");
+
         metaContext.configUpdated();
-        ctx.result("Removed listener");
-        ctx.header("Access-Control-Allow-Origin", "*");
     }
 
     private void writeListener(final Context ctx) {
@@ -95,9 +97,10 @@ public class AdminManager {
         });
 
         configuration.getListeners().put(newConfiguration.getId(), newConfiguration);
-        metaContext.configUpdated();
         ctx.status(201);
-        ctx.header("Access-Control-Allow-Origin", "*");
+        ctx.header(CORS_HEADER_NAME, "*");
+
+        metaContext.configUpdated();
     }
 
     private boolean differentListenerWithSamePortAndContextPath(final ListenerConfiguration newConfiguration,
@@ -115,7 +118,7 @@ public class AdminManager {
 
         try {
             ctx.result(metaContext.getObjectMapper().writeValueAsString(configuration));
-            ctx.header("Access-Control-Allow-Origin", "*");
+            ctx.header(CORS_HEADER_NAME, "*");
         } catch (JsonProcessingException e) {
             throw new IllegalStateException(e);
         }

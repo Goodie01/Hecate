@@ -2,7 +2,6 @@ package org.goodiemania.hecate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.javalin.http.HandlerType;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -66,8 +65,16 @@ public class MetaContext {
     }
 
     public void configUpdated() {
-        configurationProvider.update(configuration);
-        reStart();
+        new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            configurationProvider.update(configuration);
+            reStart();
+        }).start();
     }
 
     public LogHolder getLogsHolder() {
